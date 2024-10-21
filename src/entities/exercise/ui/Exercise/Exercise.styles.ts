@@ -12,4 +12,11 @@ export const styles = StyleSheet.create({
 		height: 70,
 		borderRadius: 5,
 	},
+	exerciseInfo: {
+		justifyContent: 'center',
+		flexGrow: 1,
+	},
+	optionIcon: {
+		alignSelf: 'center',
+	},
 });

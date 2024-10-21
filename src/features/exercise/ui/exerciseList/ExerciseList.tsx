@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { styles } from './ExercisesList.styles';
 import { TExerciseToDo } from 'entities/exercise';
-import { Exercise } from 'entities/exercise/ui';
+import { ExerciseCard } from 'entities/exercise';
 
 const list: TExerciseToDo[] = [
 	{
@@ -66,11 +66,10 @@ const ExercisesList = () => {
 		<View>
 			{list.map((exercise, index) => (
 				<View style={styles.exerciseWrapper} key={exercise.name}>
-					<Exercise
-						name={exercise.name}
-						repsCount={exercise.repsCount}
-						setsCount={exercise.setsCount}
-						weightKg={exercise.weightKg}
+					<ExerciseCard
+						image="https://static.strengthlevel.com/images/exercises/seated-dumbbell-curl/seated-dumbbell-curl-800.jpg"
+						title={exercise.name}
+						subTitle={`${exercise.setsCount} Sets * ${exercise.repsCount} Reps * ${exercise.weightKg} kg`}
 						style={styles.exerciseCard}
 					/>
 					{index !== list.length - 1 && <View style={styles.stepLine} />}

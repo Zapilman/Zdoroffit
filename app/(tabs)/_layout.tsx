@@ -12,8 +12,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 	const [loaded, error] = useFonts({
-		[EFontFamily.ROBOTO_BOLD]: require('../assets/fonts/RobotoBold.ttf'),
-		[EFontFamily.ROBOTO_REGULAR]: require('../assets/fonts/RobotoRegular.ttf'),
+		[EFontFamily.ROBOTO_BOLD]: require('../../assets/fonts/RobotoBold.ttf'),
+		[EFontFamily.ROBOTO_REGULAR]: require('../../assets/fonts/RobotoRegular.ttf'),
 	});
 
 	useEffect(() => {

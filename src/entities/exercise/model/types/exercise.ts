@@ -4,3 +4,8 @@ export type TExerciseToDo = {
 	repsCount: number;
 	weightKg: number;
 };
+
+export type TExercise = {
+	name: string;
+	imageUrl: string;
+};
