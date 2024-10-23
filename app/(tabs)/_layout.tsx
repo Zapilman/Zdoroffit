@@ -1,27 +1,17 @@
-import { Tabs, SplashScreen } from 'expo-router';
+import { useEffect } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import { useFonts } from 'expo-font';
-import { Colors, EFontFamily } from 'shared/config';
-import { useEffect } from 'react';
+
 import { PortalProvider } from '@gorhom/portal';
+import { useFonts } from 'expo-font';
+import { SplashScreen, Tabs } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { Colors, EFontFamily } from 'shared/config';
 import { WorkoutIcon } from 'shared/ui/icons';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-	const [loaded, error] = useFonts({
-		[EFontFamily.ROBOTO_BOLD]: require('../../assets/fonts/RobotoBold.ttf'),
-		[EFontFamily.ROBOTO_REGULAR]: require('../../assets/fonts/RobotoRegular.ttf'),
-	});
-
-	useEffect(() => {
-		if (loaded) {
-			SplashScreen.hideAsync();
-		}
-	}, [loaded]);
-
 	return (
 		<PortalProvider>
 			<SafeAreaProvider>
@@ -94,9 +84,6 @@ export default function RootLayout() {
 							),
 						}}
 					/>
-					<Tabs.Screen name="workout/exercises/index" options={{ href: null }} />
-					<Tabs.Screen name="workout/exercises/[exerciseId]" options={{ href: null }} />
-					<Tabs.Screen name="[...unmatched]" options={{ href: null }} />
 				</Tabs>
 			</SafeAreaProvider>
 		</PortalProvider>

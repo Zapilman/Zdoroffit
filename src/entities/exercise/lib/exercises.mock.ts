@@ -13,4 +13,16 @@ export const EXERCISES: TExercise[] = [
 		name: 'Dumbbell Row',
 		imageUrl: 'https://app-media.fitbod.me/v2/119/images/landscape/0_960x540.jpg',
 	},
+	{
+		name: 'Lat Pulldown',
+		imageUrl: 'https://app-media.fitbod.me/v2/211/images/landscape/0_960x540.jpg',
+	},
+	{
+		name: 'Barbell Bench Press',
+		imageUrl: 'https://app-media.fitbod.me/v2/29/images/landscape/0_960x540.jpg',
+	},
+	{
+		name: 'Cable Row',
+		imageUrl: 'https://app-media.fitbod.me/v2/69/images/landscape/0_960x540.jpg',
+	},
 ];
