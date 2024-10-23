@@ -18,5 +18,6 @@ export const styles = StyleSheet.create({
 	},
 	optionIcon: {
 		alignSelf: 'center',
+		transform: [{ rotate: '90deg' }],
 	},
 });

@@ -26,6 +26,7 @@ export default () => (
 		}}
 	>
 		<MaterialTopTabs.Screen name="index" options={{ title: 'All' }} />
+		<MaterialTopTabs.Screen name="by-muscles" options={{ title: 'By Muscle' }} />
 		<MaterialTopTabs.Screen name="categories" options={{ title: 'By Categories' }} />
 	</MaterialTopTabs>
 );

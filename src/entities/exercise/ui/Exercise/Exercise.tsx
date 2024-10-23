@@ -1,11 +1,14 @@
 import { memo } from 'react';
-import { View, Image } from 'react-native';
-import { styles } from './Exercise.styles';
+import { Image, View } from 'react-native';
 import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
-import { Typography } from 'shared/ui';
-import { BulletList } from 'shared/ui/icons';
-import { Link } from 'expo-router';
+
 import { PathRoutes } from 'core/routes';
+import { Link } from 'expo-router';
+
+import { Typography } from 'shared/ui';
+import { DotsIcon } from 'shared/ui/icons';
+
+import { styles } from './Exercise.styles';
 
 type TExerciseCardProps = {
 	image: string;
@@ -30,7 +33,7 @@ const ExerciseCard = ({ image, title, subTitle, style, ...otherProps }: TExercis
 				<Typography weight="bold">{title}</Typography>
 				{subTitle && <Typography>{subTitle}</Typography>}
 			</View>
-			<BulletList style={styles.optionIcon} />
+			<DotsIcon style={styles.optionIcon} />
 		</View>
 	);
 };

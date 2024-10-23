@@ -31,9 +31,19 @@ export default function RootLayout() {
 							backgroundColor: Colors.PRIMARY,
 						},
 						headerTintColor: '#fff',
+						// animation: 'slide_from_bottom',
 					}}
 				>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+					<Stack.Screen
+						name="exercise/[exerciseId]"
+						options={{
+							presentation: 'modal',
+							headerShown: false,
+							animation: 'slide_from_bottom',
+						}}
+					/>
+					<Stack.Screen name="exercises-by-muscle/[muscleName]" />
 					<Stack.Screen
 						name="exercises"
 						options={{
