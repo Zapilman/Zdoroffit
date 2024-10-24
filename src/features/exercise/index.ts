@@ -1,1 +1,1 @@
-export { AddExercise, ExerciseList } from './ui';
+export { ExerciseList } from './ui';

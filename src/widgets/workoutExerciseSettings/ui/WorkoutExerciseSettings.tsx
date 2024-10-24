@@ -1,13 +1,14 @@
-import { AddExercise, ExerciseList } from 'features/exercise';
 import { memo } from 'react';
-import { StartWorkoutButton } from './StartWorkoutButton/StartWorkoutButton';
 import { ScrollView } from 'react-native';
+
+import { ExerciseList } from 'features/exercise';
+
+import { StartWorkoutButton } from './StartWorkoutButton/StartWorkoutButton';
 
 const WorkoutExerciseSettings = () => {
 	return (
 		<>
 			<ScrollView>
-				<AddExercise />
 				<ExerciseList />
 			</ScrollView>
 			<StartWorkoutButton />

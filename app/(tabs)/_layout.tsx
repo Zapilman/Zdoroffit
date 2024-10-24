@@ -6,6 +6,7 @@ import { PortalProvider } from '@gorhom/portal';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+
 import { Colors, EFontFamily } from 'shared/config';
 import { WorkoutIcon } from 'shared/ui/icons';
 
@@ -46,7 +47,7 @@ export default function RootLayout() {
 						}}
 					/>
 					<Tabs.Screen
-						name="workout/index"
+						name="activities"
 						options={{
 							tabBarIcon: ({ focused }) => (
 								<>

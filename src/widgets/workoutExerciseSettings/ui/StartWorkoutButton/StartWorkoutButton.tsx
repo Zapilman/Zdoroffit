@@ -1,8 +1,11 @@
 import { memo, useEffect } from 'react';
-import { PortalHost, usePortal } from '@gorhom/portal';
 import { View } from 'react-native';
-import { Button } from 'shared/ui';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { PortalHost, usePortal } from '@gorhom/portal';
+
+import { Button } from 'shared/ui';
+
 import { getButtonStyles } from './StartWorkoutButton.styles';
 
 export const StartWorkoutButton = memo(() => {
