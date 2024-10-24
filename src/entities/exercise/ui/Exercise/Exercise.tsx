@@ -19,7 +19,7 @@ type TExerciseCardProps = {
 const ExerciseCard = ({ image, title, subTitle, style, ...otherProps }: TExerciseCardProps) => {
 	return (
 		<View style={[styles.exercise, style]} {...otherProps}>
-			<Link href={`${PathRoutes.EXERCISES}/pupa`}>
+			<Link href={`${PathRoutes.EXERCISE}/pupa`}>
 				<View>
 					<Image
 						source={{

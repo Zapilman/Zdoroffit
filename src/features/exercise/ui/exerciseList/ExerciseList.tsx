@@ -1,8 +1,10 @@
 import { memo } from 'react';
 import { View } from 'react-native';
-import { styles } from './ExercisesList.styles';
+
 import { TExerciseToDo } from 'entities/exercise';
 import { ExerciseCard } from 'entities/exercise';
+
+import { styles } from './ExercisesList.styles';
 
 const list: TExerciseToDo[] = [
 	{
