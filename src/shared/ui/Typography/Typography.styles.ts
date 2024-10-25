@@ -1,6 +1,8 @@
 import { StyleSheet, TextStyle } from 'react-native';
+
 import { Colors, EFontFamily } from 'shared/config';
-import { TTypographyKind, TTypographyWeight, TTypographySize } from './Typography.types';
+
+import { TTypographyKind, TTypographySize, TTypographyWeight } from './Typography.types';
 
 export const styles = StyleSheet.create({
 	typography: {},

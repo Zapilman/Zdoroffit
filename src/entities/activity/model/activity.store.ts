@@ -10,5 +10,5 @@ type TActivityState = {
 export const useActivity = create<TActivityState>()((set, get) => ({
 	activities: [],
 
-	addActivity: (activity: TActivity) => set({ activities: [...get().activities, activity] }),
+	addActivity: (activity: TActivity) => set({ activities: [activity, ...get().activities] }),
 }));

@@ -12,14 +12,16 @@ const ActivityList = () => {
 	return (
 		<View style={styles.activities}>
 			{activities.map((activity, index) => (
-				<View key={activity.exerciseName} style={styles.exerciseWrapper}>
+				<View key={activity._id} style={styles.exerciseWrapper}>
 					<ActivityCard
 						image="https://static.strengthlevel.com/images/exercises/seated-dumbbell-curl/seated-dumbbell-curl-800.jpg"
 						title={activity.exerciseName}
 						subTitle={`${activity.setsCount} Sets * ${activity.repsCount} Reps`}
 						style={styles.exerciseCard}
 					/>
-					{index !== activities.length - 1 && <View style={styles.stepLine} />}
+					{index !== activities.length - 1 && (
+						<View style={[styles.stepLine, index > 1 && styles.activeStepLine]} />
+					)}
 				</View>
 			))}
 		</View>
@@ -47,5 +49,8 @@ const styles = StyleSheet.create({
 		left: 25,
 		top: '50%',
 		zIndex: 1,
+	},
+	activeStepLine: {
+		backgroundColor: Colors.SECONDARY,
 	},
 });

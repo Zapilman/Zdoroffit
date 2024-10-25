@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { Text } from 'react-native';
-import { TTypographyProps } from './Typography.types';
 
 import { colorStyles, sizeStyles, styles, weightStyles } from './Typography.styles';
+import { TTypographyProps } from './Typography.types';
 
 const Typography = ({
 	style,

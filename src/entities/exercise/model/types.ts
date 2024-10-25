@@ -8,4 +8,5 @@ export type TExerciseToDo = {
 export type TExercise = {
 	name: string;
 	imageUrl: string;
+	id: string;
 };

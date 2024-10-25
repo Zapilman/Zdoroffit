@@ -1,6 +1,6 @@
-import { TExercise } from 'entities/exercise';
+import { TExercise } from '../model/types';
 
-export const sortExercisesByName = (exercises: TExercise[]): Record<string, TExercise[]> =>
+export const sortExercisesByLetter = (exercises: TExercise[]): Record<string, TExercise[]> =>
 	exercises.reduce(
 		(acc, curr) => {
 			acc[curr.name[0]] = [...(acc[curr.name[0]] || []), curr];
