@@ -26,12 +26,18 @@
     },
     "plugins": [
       "expo-router",
-       [
+      [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/RobotoRegular", "./assets/fonts/RobotoBold.ttf", "./assets/fonts/LXGWWenKaiTC-Bold.ttf", "./assets/fonts/LXGWWenKaiTC-Regular.ttf"]
+          "fonts": [
+            "./assets/fonts/RobotoRegular",
+            "./assets/fonts/RobotoBold.ttf",
+            "./assets/fonts/LXGWWenKaiTC-Bold.ttf",
+            "./assets/fonts/LXGWWenKaiTC-Regular.ttf"
+          ]
         }
-      ]
+      ],
+      "expo-video"
     ],
     "scheme": "zdoroffit"
   }
