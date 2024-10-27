@@ -1,25 +1,42 @@
-import { RefObject, memo } from 'react';
+import { RefObject, memo, useEffect, useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import { useShallow } from 'zustand/react/shallow';
+
+import { useActivity } from 'entities/activity';
 
 import { Colors } from 'shared/config';
 import { Button, Typography } from 'shared/ui';
 
 import { TActivityFormEditFields } from '../model/formTypes';
 import { ActivityForm } from './activity-form';
+import { ActivitySettings } from './activity-settings';
+import { SettingsContext } from './settings-context';
 
 type TActivityViewProps = {
 	modalRef: RefObject<BottomSheetModal>;
+	activityId: string;
 };
 
-const ActivityView = ({ modalRef }: TActivityViewProps) => {
+const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
+	const activity = useActivity(
+		useShallow((state) => state.activities.find((activity) => activity._id === activityId)),
+	);
 	const methods = useForm<TActivityFormEditFields>();
 
 	const handleSave = (data: TActivityFormEditFields) => {
 		console.log(data);
 	};
+
+	const settingsRef = useRef<BottomSheet>(null);
+
+	useEffect(() => {
+		if (!activity) {
+			modalRef.current?.dismiss();
+		}
+	}, [activity]);
 
 	return (
 		<BottomSheetModal
@@ -28,13 +45,19 @@ const ActivityView = ({ modalRef }: TActivityViewProps) => {
 			enableOverDrag={false}
 			// backgroundComponent={null}
 			handleComponent={null}
+			enablePanDownToClose
+			enableDismissOnClose
 		>
 			<BottomSheetView style={styles.modalContainer}>
-				<FormProvider {...methods}>
-					<Typography>ActivityView</Typography>
-					<ActivityForm />
-					<Button title="Save" onPress={methods.handleSubmit(handleSave)} />
-				</FormProvider>
+				<SettingsContext.Provider value={{ settingsModalRef: settingsRef }}>
+					<FormProvider {...methods}>
+						<Typography>{activity?.exerciseName}</Typography>
+						<ActivityForm />
+						<Button title="Save" onPress={methods.handleSubmit(handleSave)} />
+					</FormProvider>
+				</SettingsContext.Provider>
+
+				<ActivitySettings modalRef={settingsRef} />
 			</BottomSheetView>
 		</BottomSheetModal>
 	);

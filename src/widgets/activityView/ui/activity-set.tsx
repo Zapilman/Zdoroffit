@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Pressable, StyleSheet, View, ViewProps } from 'react-native';
 
@@ -8,6 +8,7 @@ import ControlledInput from 'shared/ui/components/controlled-input';
 import { DotsIcon } from 'shared/ui/icons';
 
 import { EActivityFieldNames, TActivityFormEditFields } from '../model/formTypes';
+import { useSettingsContext } from './settings-context';
 
 type TActivitySetProps = {
 	orderNum: number;
@@ -15,6 +16,12 @@ type TActivitySetProps = {
 
 export const ActivitySet = memo(({ orderNum, style, ...otherProps }: TActivitySetProps) => {
 	const { control } = useFormContext<TActivityFormEditFields>();
+	const { settingsModalRef } = useSettingsContext();
+
+	const handleOptionPress = useCallback(() => {
+		settingsModalRef.current?.expand();
+	}, []);
+
 	return (
 		<>
 			<View style={[styles.setWrapper, style]} {...otherProps}>
@@ -41,7 +48,7 @@ export const ActivitySet = memo(({ orderNum, style, ...otherProps }: TActivitySe
 						keyboardType: 'number-pad',
 					}}
 				/>
-				<Pressable>
+				<Pressable onPress={handleOptionPress}>
 					<DotsIcon />
 				</Pressable>
 			</View>

@@ -1,6 +1,8 @@
+import { StateStorage } from 'zustand/middleware';
+
 type TStorageImplementation = {
 	setItemImpl: (key: string, value: string) => void;
-	getItemImpl: (key: string) => string | undefined;
+	getItemImpl: (key: string) => Promise<string | null>;
 	removeItemImpl: (key: string) => void;
 };
 
@@ -8,12 +10,12 @@ export const _storageService = ({
 	setItemImpl,
 	getItemImpl,
 	removeItemImpl,
-}: TStorageImplementation) => {
+}: TStorageImplementation): StateStorage => {
 	const setItem = (key: string, value: string) => {
 		setItemImpl(key, value);
 	};
 	const getItem = (key: string) => {
-		getItemImpl(key);
+		return getItemImpl(key);
 	};
 	const removeItem = (key: string) => {
 		removeItemImpl(key);

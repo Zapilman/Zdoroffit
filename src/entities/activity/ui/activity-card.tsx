@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Image, StyleSheet, View, ViewProps } from 'react-native';
+import { Image, Pressable, StyleSheet, View, ViewProps } from 'react-native';
 
 import { PathRoutes } from 'core/routes';
 import { Link } from 'expo-router';
@@ -11,9 +11,19 @@ type TActivityCardProps = {
 	image: string;
 	title: string;
 	subTitle?: string;
+	onPress?: () => void;
+	onOptionPress?: () => void;
 } & ViewProps;
 
-const ActivityCard = ({ image, title, subTitle, style, ...otherProps }: TActivityCardProps) => {
+const ActivityCard = ({
+	image,
+	title,
+	subTitle,
+	style,
+	onPress,
+	onOptionPress,
+	...otherProps
+}: TActivityCardProps) => {
 	return (
 		<View style={[styles.activity, style]} {...otherProps}>
 			<Link href={`${PathRoutes.EXERCISE}/pupa`}>
@@ -26,11 +36,13 @@ const ActivityCard = ({ image, title, subTitle, style, ...otherProps }: TActivit
 					/>
 				</View>
 			</Link>
-			<View style={styles.activityInfo}>
+			<Pressable style={styles.activityInfo} onPress={onPress}>
 				<Typography weight="bold">{title}</Typography>
 				{subTitle && <Typography>{subTitle}</Typography>}
-			</View>
-			<DotsIcon style={styles.optionIcon} />
+			</Pressable>
+			<Pressable onPress={onOptionPress} style={styles.optionBtn}>
+				<DotsIcon />
+			</Pressable>
 		</View>
 	);
 };
@@ -52,8 +64,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		flexGrow: 1,
 	},
-	optionIcon: {
+	optionBtn: {
 		alignSelf: 'center',
+		padding: 10,
 		transform: [{ rotate: '90deg' }],
 	},
 });

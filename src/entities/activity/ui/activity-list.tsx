@@ -1,24 +1,23 @@
-import { memo } from 'react';
+import { ReactNode, memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Colors } from 'shared/config';
 
 import { useActivity } from '../model/activity.store';
-import ActivityCard from './activity-card';
+import { TActivity } from '../model/types';
 
-const ActivityList = () => {
+type TActivityListProps = {
+	renderCard: (activity: TActivity, index: number) => ReactNode;
+};
+
+const ActivityList = ({ renderCard }: TActivityListProps) => {
 	const activities = useActivity((state) => state.activities);
 
 	return (
 		<View style={styles.activities}>
 			{activities.map((activity, index) => (
 				<View key={activity._id} style={styles.exerciseWrapper}>
-					<ActivityCard
-						image="https://static.strengthlevel.com/images/exercises/seated-dumbbell-curl/seated-dumbbell-curl-800.jpg"
-						title={activity.exerciseName}
-						subTitle={`${activity.setsCount} Sets * ${activity.repsCount} Reps`}
-						style={styles.exerciseCard}
-					/>
+					{renderCard(activity, index)}
 					{index !== activities.length - 1 && (
 						<View style={[styles.stepLine, index > 1 && styles.activeStepLine]} />
 					)}
@@ -36,10 +35,6 @@ const styles = StyleSheet.create({
 	},
 	exerciseWrapper: {
 		position: 'relative',
-	},
-	exerciseCard: {
-		marginTop: 30,
-		zIndex: 2,
 	},
 	stepLine: {
 		width: 2,
