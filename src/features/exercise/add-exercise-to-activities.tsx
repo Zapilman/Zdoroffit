@@ -2,7 +2,7 @@ import { ReactNode, memo, useCallback } from 'react';
 
 import { Portal } from '@gorhom/portal';
 import { PathRoutes } from 'core/routes';
-import { router, useNavigation } from 'expo-router';
+import { router } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useActivity } from 'entities/activity';
