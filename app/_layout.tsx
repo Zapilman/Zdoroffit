@@ -50,7 +50,7 @@ export default function RootLayout() {
 							name="exercises"
 							options={{
 								title: 'Add an exercise',
-								headerRight: () => <Typography>asdasd</Typography>,
+								// headerRight: () => <Typography>asdasd</Typography>,
 								headerLeft: () => <Typography>back</Typography>,
 							}}
 						/>

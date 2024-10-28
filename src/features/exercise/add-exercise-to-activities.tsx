@@ -1,13 +1,14 @@
 import { ReactNode, memo, useCallback } from 'react';
-import { View } from 'react-native';
 
 import { Portal } from '@gorhom/portal';
+import { PathRoutes } from 'core/routes';
+import { router, useNavigation } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useActivity } from 'entities/activity';
 import { useExercises } from 'entities/exercise/model/exercises.store';
 
-import { Button, Typography } from 'shared/ui';
+import { Button } from 'shared/ui';
 
 type TAddExerciseToActivityProps = {
 	children: ReactNode;
@@ -31,11 +32,9 @@ const AddExerciseToActivity = ({ children }: TAddExerciseToActivityProps) => {
 					muscleGroup: 'asdasd',
 				});
 			}
-			// addToActivities({
-			//     exerciseName: selectedExercise.nam
-			// });
 		});
 		clearSelected();
+		router.push(PathRoutes.WORKOUT);
 	}, [selectedExercises, addToActivities]);
 
 	return (

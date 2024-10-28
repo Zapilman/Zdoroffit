@@ -1,4 +1,4 @@
-import { Fragment, memo, useState } from 'react';
+import { Fragment, memo, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { useShallow } from 'zustand/react/shallow';
@@ -7,14 +7,19 @@ import { Typography } from 'shared/ui';
 
 import { sortExercisesByLetter } from '../lib/sort-by-letter';
 import { useExercises } from '../model/exercises.store';
+import { TExercise } from '../model/types';
 import ExerciseCard from './exercise-card';
 
-const ExerciseList = () => {
-	const [getExercisesMap, selectedExercises, selectExercise] = useExercises(
-		useShallow((state) => [state.getExercisesMap, state.selectedExercises, state.selectExercise]),
+type TExerciseListProps = {
+	exercisesList: TExercise[];
+};
+
+const ExerciseList = ({ exercisesList }: TExerciseListProps) => {
+	const [selectedExercises, selectExercise] = useExercises(
+		useShallow((state) => [state.selectedExercises, state.selectExercise]),
 	);
 
-	const [sortedByLetter] = useState(() => sortExercisesByLetter(getExercisesMap()));
+	const sortedByLetter = useMemo(() => sortExercisesByLetter(exercisesList), [exercisesList]);
 
 	return (
 		<ScrollView>
