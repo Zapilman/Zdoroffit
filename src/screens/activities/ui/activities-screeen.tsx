@@ -24,6 +24,7 @@ const ActivitiesScreen = () => {
 	const activityOptionModalRef = useRef<BottomSheetModal>(null);
 
 	const handleAdd = (activityId: string) => () => {
+		activityViewModalRef.current?.dismiss();
 		activityViewModalRef.current?.present();
 		setSelectedActivity(activityId);
 	};

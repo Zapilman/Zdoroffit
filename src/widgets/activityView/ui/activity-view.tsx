@@ -6,29 +6,36 @@ import BottomSheet, { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-s
 import { useShallow } from 'zustand/react/shallow';
 
 import { useActivity } from 'entities/activity';
+import { useExercises } from 'entities/exercise/model/exercises.store';
+
+import {
+	ActivityProgressForm,
+	SettingsContext,
+	TActivityFormEditFields,
+	defaultProgressFormValues,
+	useActivityProgress,
+} from 'features/activities/manage-progress';
 
 import { Colors } from 'shared/config';
 import { Button, Typography } from 'shared/ui';
 
-import { TActivityFormEditFields } from '../model/formTypes';
 import { ActivityForm } from './activity-form';
 import { ActivitySettings } from './activity-settings';
-import { SettingsContext } from './settings-context';
 
 type TActivityViewProps = {
 	modalRef: RefObject<BottomSheetModal>;
-	activityId: string;
+	activityId: string | undefined;
 };
 
 const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 	const activity = useActivity(
 		useShallow((state) => state.activities.find((activity) => activity._id === activityId)),
 	);
-	const methods = useForm<TActivityFormEditFields>();
-
-	const handleSave = (data: TActivityFormEditFields) => {
-		console.log(data);
-	};
+	const exercise = useExercises(
+		useShallow((state) =>
+			Object.values(state.exercises).find((exercise) => exercise.name === activity?.exerciseName),
+		),
+	);
 
 	const settingsRef = useRef<BottomSheet>(null);
 
@@ -37,6 +44,10 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 			modalRef.current?.dismiss();
 		}
 	}, [activity]);
+
+	const onSave = () => {
+		modalRef.current?.dismiss();
+	};
 
 	return (
 		<BottomSheetModal
@@ -50,11 +61,9 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 		>
 			<BottomSheetView style={styles.modalContainer}>
 				<SettingsContext.Provider value={{ settingsModalRef: settingsRef }}>
-					<FormProvider {...methods}>
-						<Typography>{activity?.exerciseName}</Typography>
-						<ActivityForm />
-						<Button title="Save" onPress={methods.handleSubmit(handleSave)} />
-					</FormProvider>
+					<Typography>{exercise?.name}</Typography>
+
+					{activityId && <ActivityForm activityId={activityId} onSave={onSave} />}
 				</SettingsContext.Provider>
 
 				<ActivitySettings modalRef={settingsRef} />

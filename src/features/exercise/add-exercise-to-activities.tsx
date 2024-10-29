@@ -25,7 +25,7 @@ const AddExerciseToActivity = ({ children }: TAddExerciseToActivityProps) => {
 		selectedExercises.forEach((selectedExercise) => {
 			if (exercises[selectedExercise]) {
 				addToActivities({
-					_id: String(Math.random()),
+					_id: (Math.random() + 1).toString(36).substring(7),
 					exerciseName: exercises[selectedExercise].name,
 					setsCount: 3,
 					repsCount: 2,
