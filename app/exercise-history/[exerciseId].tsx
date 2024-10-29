@@ -1,3 +1,3 @@
-import { ExerciseHistoryScreen } from 'features/exercise-history';
+import { ExerciseHistoryScreen } from 'screens/exercise-history';
 
 export default () => <ExerciseHistoryScreen />;
