@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { View } from 'react-native';
 
+import dayjs from 'dayjs';
+
 import { Typography } from 'shared/ui';
 
 import { TExerciseHistoryItem } from '../model/types';
@@ -11,7 +13,7 @@ const ExerciseHistoryCard = ({ dateCreated, generalNote }: TExerciseHistoryCardP
 	return (
 		<View>
 			<Typography>ExerciseHistoryCard</Typography>
-			<Typography>{dateCreated.toLocaleDateString()}</Typography>
+			<Typography>{dayjs(dateCreated).format('MM YYYY')}</Typography>
 			<Typography>{generalNote}</Typography>
 		</View>
 	);

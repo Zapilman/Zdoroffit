@@ -12,10 +12,11 @@ import { Button } from 'shared/ui';
 
 type TActivityFormProps = {
 	activityId: string;
+	exerciseId: string;
 	onSave: () => void;
 };
 
-export const ActivityForm = memo(({ activityId, onSave }: TActivityFormProps) => {
+export const ActivityForm = memo(({ activityId, onSave, exerciseId }: TActivityFormProps) => {
 	const { progress, saveProgress } = useActivityProgress(activityId);
 	const methods = useForm<TActivityFormEditFields>({
 		defaultValues: {
@@ -24,7 +25,7 @@ export const ActivityForm = memo(({ activityId, onSave }: TActivityFormProps) =>
 	});
 
 	const handleSave = (data: TActivityFormEditFields) => {
-		saveProgress(data, activityId);
+		saveProgress(data, exerciseId);
 		onSave();
 	};
 

@@ -8,4 +8,6 @@ export const enum PathRoutes {
 	EXERCISES_BY_MUSCLE = '/exercises-by-muscle',
 
 	WORKOUT = '(tabs)/activities',
+
+	EXERCISE_HISTORY = '/exercise-history',
 }

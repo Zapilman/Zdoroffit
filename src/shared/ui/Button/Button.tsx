@@ -1,16 +1,15 @@
 import { memo } from 'react';
-import { Pressable, View, PressableProps } from 'react-native';
-import { styles } from './Button.styles';
-import Typography from '../Typography/Typography';
+import { Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 
-const Button = ({ title, ...otherProps }: PressableProps & { title: string }) => {
+import Typography from '../Typography/Typography';
+import { styles } from './Button.styles';
+
+const Button = ({ title, style, ...otherProps }: PressableProps & { title: string }) => {
 	return (
-		<Pressable {...otherProps}>
-			<View style={styles.button}>
-				<Typography weight="bold" kind="accent">
-					{title}
-				</Typography>
-			</View>
+		<Pressable style={[styles.button, style as StyleProp<ViewStyle>]} {...otherProps}>
+			<Typography weight="bold" kind="accent">
+				{title}
+			</Typography>
 		</Pressable>
 	);
 };

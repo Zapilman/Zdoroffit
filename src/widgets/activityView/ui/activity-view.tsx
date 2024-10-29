@@ -1,6 +1,5 @@
 import { RefObject, memo, useEffect, useRef } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
 import BottomSheet, { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useShallow } from 'zustand/react/shallow';
@@ -8,18 +7,13 @@ import { useShallow } from 'zustand/react/shallow';
 import { useActivity } from 'entities/activity';
 import { useExercises } from 'entities/exercise/model/exercises.store';
 
-import {
-	ActivityProgressForm,
-	SettingsContext,
-	TActivityFormEditFields,
-	defaultProgressFormValues,
-	useActivityProgress,
-} from 'features/activities/manage-progress';
+import { SettingsContext } from 'features/activities/manage-progress';
 
 import { Colors } from 'shared/config';
-import { Button, Typography } from 'shared/ui';
+import { Typography } from 'shared/ui';
 
 import { ActivityForm } from './activity-form';
+import { ActivityOptionButtons } from './activity-options';
 import { ActivitySettings } from './activity-settings';
 
 type TActivityViewProps = {
@@ -61,9 +55,15 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 		>
 			<BottomSheetView style={styles.modalContainer}>
 				<SettingsContext.Provider value={{ settingsModalRef: settingsRef }}>
-					<Typography>{exercise?.name}</Typography>
+					<View style={styles.activityInterection}>
+						<Typography>{exercise?.name}</Typography>
 
-					{activityId && <ActivityForm activityId={activityId} onSave={onSave} />}
+						<ActivityOptionButtons exerciseId={exercise?.id} />
+
+						{activityId && exercise?.id ? (
+							<ActivityForm exerciseId={exercise?.id} activityId={activityId} onSave={onSave} />
+						) : null}
+					</View>
 				</SettingsContext.Provider>
 
 				<ActivitySettings modalRef={settingsRef} />
@@ -81,5 +81,9 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.PRIMARY,
 		borderTopLeftRadius: 15,
 		borderTopRightRadius: 15,
+	},
+	activityInterection: {
+		paddingHorizontal: 20,
+		gap: 20,
 	},
 });

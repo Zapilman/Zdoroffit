@@ -40,12 +40,12 @@ export default function RootLayout() {
 						<Stack.Screen
 							name="exercise/[exerciseId]"
 							options={{
-								presentation: 'modal',
 								headerShown: false,
 								animation: 'slide_from_bottom',
 							}}
 						/>
 						<Stack.Screen name="exercises-by-muscle/[muscleName]" />
+						<Stack.Screen name="exercise-history/[exerciseId]" />
 						<Stack.Screen
 							name="exercises"
 							options={{
