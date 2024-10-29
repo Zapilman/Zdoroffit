@@ -32,7 +32,7 @@ const ExerciseHistoryScreen = () => {
 					<Fragment key={history._id}>
 						{index > 0 && <View style={styles.separator} />}
 						<ExerciseHistoryCard
-							generalNote="asdadas"
+							generalNote={history.generalNote}
 							dateCreated={history.dateCreated}
 							progress={history.progress}
 						/>

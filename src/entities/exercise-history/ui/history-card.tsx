@@ -15,7 +15,7 @@ const ExerciseHistoryCard = ({ dateCreated, generalNote, progress }: TExerciseHi
 	return (
 		<View>
 			<Typography kind="primary" size="lg">
-				{dayjs(dateCreated).format('MMM MM, YYYY')}
+				{dayjs(dateCreated).format('MMM DD, YYYY')}
 			</Typography>
 
 			<Typography kind="secondary" weight="bold" style={styles.setsTitle}>
@@ -29,10 +29,14 @@ const ExerciseHistoryCard = ({ dateCreated, generalNote, progress }: TExerciseHi
 				)}
 			/>
 
-			<Typography kind="secondary" weight="bold">
-				Note
-			</Typography>
-			<Typography>{generalNote}</Typography>
+			{generalNote && (
+				<>
+					<Typography kind="secondary" weight="bold">
+						Note
+					</Typography>
+					<Typography>{generalNote}</Typography>
+				</>
+			)}
 		</View>
 	);
 };
