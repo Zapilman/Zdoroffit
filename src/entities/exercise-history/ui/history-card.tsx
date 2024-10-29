@@ -1,9 +1,10 @@
 import { memo } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import dayjs from 'dayjs';
 
 import { Typography } from 'shared/ui';
+import ProgressList from 'shared/ui/components/progress-list';
 
 import { TExerciseHistoryItem } from '../model/types';
 import { SetInfoCard } from './set-info-card';
@@ -17,16 +18,16 @@ const ExerciseHistoryCard = ({ dateCreated, generalNote, progress }: TExerciseHi
 				{dayjs(dateCreated).format('MMM MM, YYYY')}
 			</Typography>
 
-			<Typography kind="secondary" weight="bold">
+			<Typography kind="secondary" weight="bold" style={styles.setsTitle}>
 				Working sets
 			</Typography>
-			{progress.map((progressItem, index) => (
-				<SetInfoCard
-					key={index}
-					repsCount={progressItem.repCount}
-					liftedWeight={progressItem.weight}
-				/>
-			))}
+			<ProgressList
+				list={progress}
+				keyExtractor={(_, index) => String(index)}
+				renderItem={(progressItem) => (
+					<SetInfoCard repsCount={progressItem.repCount} liftedWeight={progressItem.weight} />
+				)}
+			/>
 
 			<Typography kind="secondary" weight="bold">
 				Note
@@ -37,3 +38,9 @@ const ExerciseHistoryCard = ({ dateCreated, generalNote, progress }: TExerciseHi
 };
 
 export default memo(ExerciseHistoryCard);
+
+const styles = StyleSheet.create({
+	setsTitle: {
+		marginVertical: 10,
+	},
+});

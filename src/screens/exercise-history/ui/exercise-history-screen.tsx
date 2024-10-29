@@ -4,12 +4,10 @@ import { StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
-import { useExerciseHistory } from 'entities/exercise-history';
-import HistoryCard from 'entities/exercise-history/ui/history-card';
-import { useExercises } from 'entities/exercise/model/exercises.store';
+import { useExercises } from 'entities/exercise';
+import { ExerciseHistoryCard, useExerciseHistory } from 'entities/exercise-history';
 
 import { Colors } from 'shared/config';
-import { Typography } from 'shared/ui';
 
 const ExerciseHistoryScreen = () => {
 	const { exerciseId } = useLocalSearchParams<{ exerciseId: string }>();
@@ -33,13 +31,11 @@ const ExerciseHistoryScreen = () => {
 				exerciseHistory.map((history, index) => (
 					<Fragment key={history._id}>
 						{index > 0 && <View style={styles.separator} />}
-						<View>
-							<HistoryCard
-								generalNote="asdadas"
-								dateCreated={history.dateCreated}
-								progress={history.progress}
-							/>
-						</View>
+						<ExerciseHistoryCard
+							generalNote="asdadas"
+							dateCreated={history.dateCreated}
+							progress={history.progress}
+						/>
 					</Fragment>
 				))}
 		</View>

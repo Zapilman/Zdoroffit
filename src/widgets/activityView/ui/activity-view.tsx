@@ -1,5 +1,5 @@
-import { RefObject, memo, useEffect, useRef } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { RefObject, memo, useCallback, useEffect, useRef } from 'react';
+import { BackHandler, Dimensions, StyleSheet, View } from 'react-native';
 
 import BottomSheet, { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useShallow } from 'zustand/react/shallow';
@@ -33,15 +33,27 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 
 	const settingsRef = useRef<BottomSheet>(null);
 
-	useEffect(() => {
-		if (!activity) {
-			modalRef.current?.dismiss();
-		}
-	}, [activity]);
-
 	const onSave = () => {
 		modalRef.current?.dismiss();
 	};
+
+	const closeModal = useCallback(() => {
+		modalRef.current?.dismiss();
+
+		return true;
+	}, []);
+
+	useEffect(() => {
+		if (!activity) {
+			closeModal();
+		}
+	}, [activity, closeModal]);
+
+	useEffect(() => {
+		const backHandler = BackHandler.addEventListener('hardwareBackPress', closeModal);
+
+		return () => backHandler.remove();
+	});
 
 	return (
 		<BottomSheetModal
