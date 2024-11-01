@@ -27,7 +27,7 @@ const ActivityList = ({ renderCard }: TActivityListProps) => {
 	);
 };
 
-export default memo(ActivityList);
+export default memo(ActivityList) as typeof ActivityList;
 
 const styles = StyleSheet.create({
 	activities: {

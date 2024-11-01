@@ -2,6 +2,7 @@ import { RefObject, memo, useCallback, useEffect, useRef } from 'react';
 import { BackHandler, Dimensions, StyleSheet, View } from 'react-native';
 
 import BottomSheet, { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import { useFocusEffect } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useActivity } from 'entities/activity';
@@ -13,7 +14,6 @@ import { Colors } from 'shared/config';
 import { Typography } from 'shared/ui';
 
 import { ActivityForm } from './activity-form';
-import { ActivityOptionButtons } from './activity-options';
 import { ActivitySettings } from './activity-settings';
 
 type TActivityViewProps = {
@@ -49,7 +49,7 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 		}
 	}, [activity, closeModal]);
 
-	useEffect(() => {
+	useFocusEffect(() => {
 		const backHandler = BackHandler.addEventListener('hardwareBackPress', closeModal);
 
 		return () => backHandler.remove();
@@ -69,8 +69,6 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 				<SettingsContext.Provider value={{ settingsModalRef: settingsRef }}>
 					<View style={styles.activityInterection}>
 						<Typography>{exercise?.name}</Typography>
-
-						<ActivityOptionButtons exerciseId={exercise?.id} />
 
 						{activityId && exercise?.id ? (
 							<ActivityForm exerciseId={exercise?.id} activityId={activityId} onSave={onSave} />

@@ -6,6 +6,8 @@ import { AppProvider } from 'core/providers/AppProvider';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 
+import { ModalProvider } from 'entities/modal';
+
 import { Colors, EFontFamily } from 'shared/config';
 import { Typography } from 'shared/ui';
 
@@ -26,36 +28,38 @@ export default function RootLayout() {
 	return (
 		<AppProvider>
 			<PortalProvider>
-				<SafeAreaProvider>
-					<Stack
-						screenOptions={{
-							headerStyle: {
-								backgroundColor: Colors.PRIMARY,
-							},
-							headerTintColor: '#fff',
-							// animation: 'slide_from_bottom',
-						}}
-					>
-						<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-						<Stack.Screen
-							name="exercise/[exerciseId]"
-							options={{
-								headerShown: false,
-								animation: 'slide_from_bottom',
+				<ModalProvider>
+					<SafeAreaProvider>
+						<Stack
+							screenOptions={{
+								headerStyle: {
+									backgroundColor: Colors.PRIMARY,
+								},
+								headerTintColor: '#fff',
+								// animation: 'slide_from_bottom',
 							}}
-						/>
-						<Stack.Screen name="exercises-by-muscle/[muscleName]" />
-						<Stack.Screen name="exercise-history/[exerciseId]" />
-						<Stack.Screen
-							name="exercises"
-							options={{
-								title: 'Add an exercise',
-								// headerRight: () => <Typography>asdasd</Typography>,
-								headerLeft: () => <Typography>back</Typography>,
-							}}
-						/>
-					</Stack>
-				</SafeAreaProvider>
+						>
+							<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+							<Stack.Screen
+								name="exercise/[exerciseId]"
+								options={{
+									headerShown: false,
+									animation: 'slide_from_bottom',
+								}}
+							/>
+							<Stack.Screen name="exercises-by-muscle/[muscleName]" />
+							<Stack.Screen name="exercise-history/[exerciseId]" />
+							<Stack.Screen
+								name="exercises"
+								options={{
+									title: 'Add an exercise',
+									// headerRight: () => <Typography>asdasd</Typography>,
+									headerLeft: () => <Typography>back</Typography>,
+								}}
+							/>
+						</Stack>
+					</SafeAreaProvider>
+				</ModalProvider>
 			</PortalProvider>
 		</AppProvider>
 	);

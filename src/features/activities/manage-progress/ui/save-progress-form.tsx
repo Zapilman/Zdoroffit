@@ -1,8 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
-import { Colors } from 'shared/config';
 import ProgressList from 'shared/ui/components/progress-list';
 
 import { EActivityFieldNames, TActivityFormEditFields } from '../model/formTypes';

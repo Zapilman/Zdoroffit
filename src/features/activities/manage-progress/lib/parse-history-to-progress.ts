@@ -5,6 +5,9 @@ import { EActivityFieldNames, TActivityFormEditFields } from '../model/formTypes
 export const parseExerciseHistoryToProgress = (
 	history: TExerciseHistoryItem,
 ): TActivityFormEditFields[1] => ({
+	[EActivityFieldNames.GENERAL_NOTES]: [
+		{ [EActivityFieldNames.GENERAL_NOTE]: history.generalNote },
+	],
 	[EActivityFieldNames.SET_SETTINGS]: history.progress.map((progressItem) => ({
 		[EActivityFieldNames.REP_COUNT]: String(progressItem.repCount),
 		[EActivityFieldNames.LIFTED_WEIGHT]: String(progressItem.weight),

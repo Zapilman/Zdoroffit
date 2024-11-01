@@ -1,5 +1,7 @@
-import { ComponentProps, memo } from 'react';
+import { ComponentProps } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
+
+import { typedMemo } from 'shared/types/react';
 
 import { Input } from './Input';
 
@@ -27,4 +29,4 @@ const ControlledInput = <T extends FieldValues>({
 	);
 };
 
-export default memo(ControlledInput) as typeof ControlledInput;
+export default typedMemo(ControlledInput);

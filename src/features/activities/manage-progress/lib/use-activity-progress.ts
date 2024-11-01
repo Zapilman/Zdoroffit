@@ -18,7 +18,7 @@ export const useActivityProgress = (activityId: string) => {
 				_id: activityId,
 				exerciseId,
 				dateCreated: new Date(),
-				generalNote: '',
+				generalNote: data[activityId].general_notes[0].general_note,
 				progress: data[activityId].set_settings.map((setting) => ({
 					repCount: Number(setting.rep_count),
 					weight: Number(setting.lifted_weight),
