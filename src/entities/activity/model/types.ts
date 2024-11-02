@@ -4,4 +4,6 @@ export type TActivity = {
 	muscleGroup: string;
 	setsCount: number;
 	repsCount: number;
+	imgUrl: string;
+	videoUrl: string;
 };

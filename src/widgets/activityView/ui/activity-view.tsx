@@ -1,13 +1,14 @@
-import { RefObject, memo, useRef } from 'react';
+import { RefObject, memo } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
-import BottomSheet, { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import { BottomSheetModal, BottomSheetScrollView, BottomSheetView } from '@gorhom/bottom-sheet';
 
 import { Colors } from 'shared/config';
 import { Typography } from 'shared/ui';
 
 import { useActivityView } from '../lib/use-activity-view';
 import { ActivityForm } from './activity-form';
+import { ActivityVideo } from './activity-video';
 
 type TActivityViewProps = {
 	modalRef: RefObject<BottomSheetModal>;
@@ -27,9 +28,15 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 			enablePanDownToClose
 			enableDismissOnClose
 		>
-			<BottomSheetView style={styles.modalContainer}>
+			<BottomSheetScrollView contentContainerStyle={styles.modalContainer}>
 				<View style={styles.activityInterection}>
-					<Typography>{exercise?.name}</Typography>
+					{exercise?.videoUrl && <ActivityVideo videoUrl={exercise.videoUrl} />}
+
+					<View style={styles.title}>
+						<Typography kind="accent" weight="bold" size="lg">
+							{exercise?.name}
+						</Typography>
+					</View>
 
 					{activityId && exercise?.id ? (
 						<ActivityForm
@@ -39,7 +46,7 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 						/>
 					) : null}
 				</View>
-			</BottomSheetView>
+			</BottomSheetScrollView>
 		</BottomSheetModal>
 	);
 };
@@ -48,15 +55,18 @@ export default memo(ActivityView);
 
 const styles = StyleSheet.create({
 	modalContainer: {
-		height: Dimensions.get('window').height,
+		minHeight: Dimensions.get('window').height,
 		width: Dimensions.get('window').width,
+		paddingHorizontal: 0,
 		backgroundColor: Colors.PRIMARY,
 		borderTopLeftRadius: 15,
 		borderTopRightRadius: 15,
+		overflow: 'hidden',
 	},
 	activityInterection: {
-		paddingHorizontal: 20,
 		gap: 20,
-		flex: 1,
+	},
+	title: {
+		paddingHorizontal: 40,
 	},
 });

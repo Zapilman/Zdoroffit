@@ -30,6 +30,7 @@ const AddExerciseToActivity = ({ children }: TAddExerciseToActivityProps) => {
 					setsCount: 3,
 					repsCount: 2,
 					muscleGroup: 'asdasd',
+					imgUrl: exercises[selectedExercise].imageUrl,
 				});
 			}
 		});

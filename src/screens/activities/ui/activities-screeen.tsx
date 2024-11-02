@@ -42,7 +42,7 @@ const ActivitiesScreen = () => {
 	const renderActivityCard = useCallback((activity: TActivity) => {
 		return (
 			<ActivityCard
-				image="https://static.strengthlevel.com/images/exercises/seated-dumbbell-curl/seated-dumbbell-curl-800.jpg"
+				image={activity.imgUrl}
 				title={activity.exerciseName}
 				subTitle={`${activity.setsCount} Sets * ${activity.repsCount} Reps`}
 				style={styles.activityCard}
