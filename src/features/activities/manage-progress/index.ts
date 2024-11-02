@@ -1,5 +1,4 @@
 export { ActivityProgressForm } from './ui/save-progress-form';
-export { SettingsContext } from './ui/settings-context';
 
 export { TActivityFormEditFields } from './model/formTypes';
 

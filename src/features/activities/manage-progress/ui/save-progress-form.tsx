@@ -15,7 +15,7 @@ type TActivityProgressFormProps = {
 export const ActivityProgressForm = memo(({ fieldPrefix }: TActivityProgressFormProps) => {
 	const { control } = useFormContext<TActivityFormEditFields>();
 
-	const { fields, append } = useFieldArray({
+	const { fields, append, remove } = useFieldArray({
 		control,
 		name: `${fieldPrefix}.${EActivityFieldNames.SET_SETTINGS}`,
 	});
@@ -24,8 +24,16 @@ export const ActivityProgressForm = memo(({ fieldPrefix }: TActivityProgressForm
 		append({
 			[EActivityFieldNames.LIFTED_WEIGHT]: '0',
 			[EActivityFieldNames.REP_COUNT]: '0',
+			[EActivityFieldNames.SET_NOTES]: [],
 		});
 	}, []);
+
+	const handleRemoveSet = useCallback(
+		(index: number) => () => {
+			remove(index);
+		},
+		[remove],
+	);
 
 	return (
 		<View>
@@ -35,6 +43,7 @@ export const ActivityProgressForm = memo(({ fieldPrefix }: TActivityProgressForm
 				renderItem={(_, index) => (
 					<ActivitySet
 						fieldPrefix={`${fieldPrefix}.${EActivityFieldNames.SET_SETTINGS}.${index}`}
+						removeSet={handleRemoveSet(index)}
 					/>
 				)}
 			/>

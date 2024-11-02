@@ -25,7 +25,11 @@ const ExerciseHistoryCard = ({ dateCreated, generalNote, progress }: TExerciseHi
 				list={progress}
 				keyExtractor={(_, index) => String(index)}
 				renderItem={(progressItem) => (
-					<SetInfoCard repsCount={progressItem.repCount} liftedWeight={progressItem.weight} />
+					<SetInfoCard
+						repsCount={progressItem.repCount}
+						liftedWeight={progressItem.weight}
+						note={progressItem.note}
+					/>
 				)}
 			/>
 

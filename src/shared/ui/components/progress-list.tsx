@@ -20,7 +20,7 @@ const ProgressList = <ListItem extends Record<string, unknown>>({
 		<View key={keyExtractor(listItem, index)} style={styles.listItem}>
 			<View style={styles.orderWrapper}>
 				<Typography style={styles.order}>{index + 1}</Typography>
-				{renderItem(listItem, index)}
+				<View style={styles.item}>{renderItem(listItem, index)}</View>
 			</View>
 			{index < list.length - 1 && <View style={[styles.progressLine, styles.lineCompleted]} />}
 		</View>
@@ -47,16 +47,22 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.ACCENT,
 		left: 15,
 		top: 30,
+		zIndex: 1,
 	},
 	order: {
+		alignSelf: 'flex-start',
 		backgroundColor: Colors.SECONDARY,
 		borderRadius: 50,
 		padding: 5,
 		width: 30,
 		height: 30,
 		textAlign: 'center',
+		zIndex: 2,
 	},
 	lineCompleted: {
 		backgroundColor: Colors.SECONDARY,
+	},
+	item: {
+		flex: 1,
 	},
 });

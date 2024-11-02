@@ -18,11 +18,13 @@ export const useActivityProgress = (activityId: string) => {
 				_id: activityId,
 				exerciseId,
 				dateCreated: new Date(),
-				generalNote: data[activityId].general_notes[0].general_note,
+				generalNote: data[activityId].general_notes?.length
+					? data[activityId].general_notes[0].general_note
+					: undefined,
 				progress: data[activityId].set_settings.map((setting) => ({
 					repCount: Number(setting.rep_count),
 					weight: Number(setting.lifted_weight),
-					note: '',
+					note: setting.set_notes?.length ? setting.set_notes[0].set_note : undefined,
 				})),
 			});
 		},

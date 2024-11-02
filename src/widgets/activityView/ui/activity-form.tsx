@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback } from 'react';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 
 import {
@@ -62,15 +62,17 @@ export const ActivityForm = memo(({ activityId, onSave, exerciseId }: TActivityF
 				onAddNote={handleAppendNote}
 			/>
 			{fields.map((field) => (
-				<ControlledInput
-					key={field.id}
-					control={methods.control}
-					name={`${activityId}.${EActivityFieldNames.GENERAL_NOTES}.0.${EActivityFieldNames.GENERAL_NOTE}`}
-					labelText="note"
-					inputProps={{
-						placeholder: 'Note...',
-					}}
-				/>
+				<>
+					<ControlledInput
+						key={field.id}
+						control={methods.control}
+						name={`${activityId}.${EActivityFieldNames.GENERAL_NOTES}.0.${EActivityFieldNames.GENERAL_NOTE}`}
+						labelText="note"
+						inputProps={{
+							placeholder: 'Note...',
+						}}
+					/>
+				</>
 			))}
 			<ActivityProgressForm fieldPrefix={activityId} />
 			<Button title="Save" onPress={methods.handleSubmit(handleSave)} />

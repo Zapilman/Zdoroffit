@@ -1,7 +1,7 @@
 type TActivityProgress = {
 	repCount: number;
 	weight: number;
-	note: string;
+	note?: string;
 };
 
 export type TExerciseHistoryItem = {
@@ -9,5 +9,5 @@ export type TExerciseHistoryItem = {
 	exerciseId: string;
 	progress: TActivityProgress[];
 	dateCreated: Date;
-	generalNote: string;
+	generalNote?: string;
 };

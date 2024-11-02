@@ -6,20 +6,22 @@ import { Typography } from 'shared/ui';
 type TSetInfoCardProps = {
 	repsCount: number;
 	liftedWeight: number;
+	note?: string;
 };
 
-export const SetInfoCard = memo(({ repsCount, liftedWeight }: TSetInfoCardProps) => {
+export const SetInfoCard = memo(({ repsCount, liftedWeight, note }: TSetInfoCardProps) => {
 	return (
 		<View style={styles.card}>
 			<Typography>
 				{repsCount} x {liftedWeight} kg
 			</Typography>
+			{note && <Typography>note: {note}</Typography>}
 		</View>
 	);
 });
 
 const styles = StyleSheet.create({
 	card: {
-		flexDirection: 'row',
+		flexDirection: 'column',
 	},
 });

@@ -6,7 +6,7 @@ import { Button } from 'shared/ui/Button';
 
 import { useModalContext } from './modal-context';
 
-export const ModalActions = typedMemo(({ children }: { children: ReactNode }) => {
+export const ModalActions = typedMemo(({ children }: { children?: ReactNode }) => {
 	const { onClose } = useModalContext();
 
 	return (
