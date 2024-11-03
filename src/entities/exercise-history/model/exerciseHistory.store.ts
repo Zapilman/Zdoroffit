@@ -1,4 +1,7 @@
 import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+
+import { storageService } from 'shared/servises/storage';
 
 import { TExerciseHistoryItem } from './types';
 
@@ -8,9 +11,17 @@ type TExerciseHistoryState = {
 	addHistory: (item: TExerciseHistoryItem) => void;
 };
 
-export const useExerciseHistory = create<TExerciseHistoryState>()((set) => ({
-	history: {},
+export const useExerciseHistory = create<TExerciseHistoryState>()(
+	persist(
+		(set) => ({
+			history: {},
 
-	addHistory: (item: TExerciseHistoryItem) =>
-		set((state) => ({ history: { ...state.history, [item._id]: item } })),
-}));
+			addHistory: (item: TExerciseHistoryItem) =>
+				set((state) => ({ history: { ...state.history, [item._id]: item } })),
+		}),
+		{
+			name: 'exercise-history-storage',
+			storage: createJSONStorage(() => storageService),
+		},
+	),
+);

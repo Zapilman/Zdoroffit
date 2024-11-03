@@ -32,18 +32,20 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 				<View style={styles.activityInterection}>
 					{exercise?.videoUrl && <ActivityVideo videoUrl={exercise.videoUrl} />}
 
-					<View style={styles.title}>
+					<View style={styles.ph20}>
 						<Typography kind="accent" weight="bold" size="lg">
 							{exercise?.name}
 						</Typography>
 					</View>
 
 					{activityId && exercise?.id ? (
-						<ActivityForm
-							exerciseId={exercise?.id}
-							activityId={activityId}
-							onSave={closeSettingsModal}
-						/>
+						<View style={styles.ph20}>
+							<ActivityForm
+								exerciseId={exercise?.id}
+								activityId={activityId}
+								onSave={closeSettingsModal}
+							/>
+						</View>
 					) : null}
 				</View>
 			</BottomSheetScrollView>
@@ -66,7 +68,8 @@ const styles = StyleSheet.create({
 	activityInterection: {
 		gap: 20,
 	},
-	title: {
-		paddingHorizontal: 40,
+	ph20: {
+		paddingHorizontal: 10,
+		gap: 20,
 	},
 });

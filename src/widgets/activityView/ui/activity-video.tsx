@@ -26,6 +26,7 @@ export const ActivityVideo = typedMemo(({ videoUrl }: TActivityVideoProps) => {
 			resizeMode={ResizeMode.COVER}
 			isLooping
 			onLoad={handlePlay}
+			isMuted
 		/>
 	);
 });

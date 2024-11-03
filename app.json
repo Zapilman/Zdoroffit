@@ -1,8 +1,13 @@
 {
   "expo": {
     "name": "Zdoroffit",
-    "slug": "Zdoroffit",
+    "slug": "zdoroffit",
+    "description": "zdorov app for fitness",
     "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,25 +24,18 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      },
+      "package": "com.zapilman.zdoroffit"
     },
     "plugins": [
-      "expo-router",
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/RobotoRegular",
-            "./assets/fonts/RobotoBold.ttf",
-            "./assets/fonts/LXGWWenKaiTC-Bold.ttf",
-            "./assets/fonts/LXGWWenKaiTC-Regular.ttf"
-          ]
-        }
-      ]
+      "expo-router"
     ],
-    "scheme": "zdoroffit"
+    "scheme": "zdoroffit",
+    "extra": {
+      "eas": {
+        "projectId": "24f2a545-1fa1-49c8-b922-b700a0e97da6"
+      }
+    },
+    "owner": "zapilman"
   }
 }
