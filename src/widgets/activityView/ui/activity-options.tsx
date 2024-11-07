@@ -30,7 +30,6 @@ export const ActivityOptionButtons = memo(
 
 		const handleAddNote = useCallback(async () => {
 			const noteRes = await noteModal.showModal({ title: 'add Note' });
-
 			if (noteRes?.note) {
 				onAddNote?.(noteRes.note);
 			}

@@ -1,7 +1,6 @@
-import { memo, useCallback, useRef, useState } from 'react';
+import { memo, useCallback } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useShallow } from 'zustand/react/shallow';
 
 import { ActivitiesList, useActivity } from 'entities/activity';
@@ -10,6 +9,7 @@ import ActivityCard from 'entities/activity/ui/activity-card';
 import { AddExercise } from 'entities/exercise';
 
 import { ActivityView } from 'widgets/activityView';
+import { useBottomModal } from 'widgets/bottom-modal';
 import { PageLayout } from 'widgets/pageLayout';
 
 import { ActivityOptionsModal } from './activity-options-modal';
@@ -18,25 +18,16 @@ const ActivitiesScreen = () => {
 	const [activities, removeActivity] = useActivity(
 		useShallow((state) => [state.activities, state.removeActivity]),
 	);
-	const [selectedActivity, setSelectedActivity] = useState<TActivity['_id']>('');
 
-	const activityViewModalRef = useRef<BottomSheetModal>(null);
-	const activityOptionModalRef = useRef<BottomSheetModal>(null);
+	const optionBottomModal = useBottomModal()(ActivityOptionsModal);
+	const activityViewBottomModal = useBottomModal()(ActivityView);
 
-	const handleAdd = (activityId: string) => () => {
-		activityViewModalRef.current?.dismiss();
-		activityViewModalRef.current?.present();
-		setSelectedActivity(activityId);
+	const showActivityView = (activityId: string) => async () => {
+		await activityViewBottomModal.showModal({ activityId });
 	};
 
-	const handleRemoveActivity = useCallback(() => {
-		removeActivity(selectedActivity);
-		activityOptionModalRef.current?.dismiss();
-	}, [removeActivity, selectedActivity]);
-
-	const handleOptionPress = (activityId: string) => () => {
-		activityOptionModalRef.current?.present();
-		setSelectedActivity(activityId);
+	const handleOptionPress = (activityId: string) => async () => {
+		await optionBottomModal.showModal({ onRemove: () => removeActivity(activityId) });
 	};
 
 	const renderActivityCard = useCallback((activity: TActivity) => {
@@ -46,7 +37,7 @@ const ActivitiesScreen = () => {
 				title={activity.exerciseName}
 				subTitle={`${activity.setsCount} Sets * ${activity.repsCount} Reps`}
 				style={styles.activityCard}
-				onPress={handleAdd(activity._id)}
+				onPress={showActivityView(activity._id)}
 				onOptionPress={handleOptionPress(activity._id)}
 			/>
 		);
@@ -57,10 +48,6 @@ const ActivitiesScreen = () => {
 			<AddExercise selectedExercisesCount={activities.length} />
 
 			<ActivitiesList renderCard={renderActivityCard} />
-
-			<ActivityView modalRef={activityViewModalRef} activityId={selectedActivity} />
-
-			<ActivityOptionsModal modalRef={activityOptionModalRef} onRemove={handleRemoveActivity} />
 		</PageLayout>
 	);
 };

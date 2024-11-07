@@ -1,4 +1,4 @@
-import { RefObject, memo } from 'react';
+import { RefObject, memo, useCallback } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
@@ -6,24 +6,33 @@ import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { Button } from 'shared/ui';
 
 type TActivityOptionsModalProps = {
-	modalRef: RefObject<BottomSheetModal>;
 	onRemove: () => void;
+	closeModal: () => void;
+	modalRef: RefObject<BottomSheetModal>;
 };
 
-export const ActivityOptionsModal = memo(({ modalRef, onRemove }: TActivityOptionsModalProps) => {
-	return (
-		<BottomSheetModal
-			ref={modalRef}
-			enableOverDrag={false}
-			enablePanDownToClose
-			enableDismissOnClose
-		>
-			<BottomSheetView style={styles.modalContainer}>
-				<Button title="Remove" style={styles.button} onPress={onRemove} />
-			</BottomSheetView>
-		</BottomSheetModal>
-	);
-});
+export const ActivityOptionsModal = memo(
+	({ modalRef, closeModal, onRemove }: TActivityOptionsModalProps) => {
+		const handleRemove = useCallback(() => {
+			onRemove();
+			closeModal();
+		}, [onRemove, closeModal]);
+
+		return (
+			<BottomSheetModal
+				ref={modalRef}
+				// onChange={handleChange}
+				onDismiss={() => closeModal()}
+				enablePanDownToClose
+				enableDismissOnClose
+			>
+				<BottomSheetView style={styles.modalContainer}>
+					<Button title="Remove" style={styles.button} onPress={handleRemove} />
+				</BottomSheetView>
+			</BottomSheetModal>
+		);
+	},
+);
 
 const styles = StyleSheet.create({
 	modalContainer: {

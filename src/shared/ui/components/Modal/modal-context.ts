@@ -8,4 +8,4 @@ type TModalContext = {
 
 export const modalContext = createContext<TModalContext | null>(null);
 
-export const useModalContext = () => useStrictContext(modalContext);
+export const useModalContext = () => useStrictContext(modalContext, 'modalContext');

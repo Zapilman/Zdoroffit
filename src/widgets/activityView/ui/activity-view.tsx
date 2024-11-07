@@ -1,7 +1,9 @@
 import { RefObject, memo } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
-import { BottomSheetModal, BottomSheetScrollView, BottomSheetView } from '@gorhom/bottom-sheet';
+import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+
+import { ModalProvider } from 'entities/modal';
 
 import { Colors } from 'shared/config';
 import { Typography } from 'shared/ui';
@@ -12,6 +14,7 @@ import { ActivityVideo } from './activity-video';
 
 type TActivityViewProps = {
 	modalRef: RefObject<BottomSheetModal>;
+	closeModal: () => void;
 	activityId: string | undefined;
 };
 
@@ -29,25 +32,27 @@ const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
 			enableDismissOnClose
 		>
 			<BottomSheetScrollView contentContainerStyle={styles.modalContainer}>
-				<View style={styles.activityInterection}>
-					{exercise?.videoUrl && <ActivityVideo videoUrl={exercise.videoUrl} />}
+				<ModalProvider>
+					<View style={styles.activityInterection}>
+						{exercise?.videoUrl && <ActivityVideo videoUrl={exercise.videoUrl} />}
 
-					<View style={styles.ph20}>
-						<Typography kind="accent" weight="bold" size="lg">
-							{exercise?.name}
-						</Typography>
-					</View>
-
-					{activityId && exercise?.id ? (
 						<View style={styles.ph20}>
-							<ActivityForm
-								exerciseId={exercise?.id}
-								activityId={activityId}
-								onSave={closeSettingsModal}
-							/>
+							<Typography kind="accent" weight="bold" size="lg">
+								{exercise?.name}
+							</Typography>
 						</View>
-					) : null}
-				</View>
+
+						{activityId && exercise?.id ? (
+							<View style={styles.ph20}>
+								<ActivityForm
+									exerciseId={exercise?.id}
+									activityId={activityId}
+									onSave={closeSettingsModal}
+								/>
+							</View>
+						) : null}
+					</View>
+				</ModalProvider>
 			</BottomSheetScrollView>
 		</BottomSheetModal>
 	);

@@ -9,7 +9,7 @@ import { ModalContext } from '../ui/modal-context';
 export const useModal =
 	<ResolvePayload extends Record<string, unknown>>() =>
 	<Props extends ModalProps<ResolvePayload>>(modalComponent: FunctionComponent<Props>) => {
-		const { showModal, closeModal } = useStrictContext(ModalContext);
+		const { showModal, closeModal } = useStrictContext(ModalContext, 'ModalContext');
 
 		return {
 			showModal: showModal<ResolvePayload, Props>(modalComponent),

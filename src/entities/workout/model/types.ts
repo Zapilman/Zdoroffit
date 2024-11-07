@@ -1,6 +1,5 @@
 export type TWorkoutItem = {
-	exerciseName: string;
-	muscleGroup: string;
-	setsCount: number;
-	repsCount: number;
+	name: string;
+	imageUrl: string;
+	exerciseIds: string[];
 };
