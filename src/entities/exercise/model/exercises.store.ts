@@ -4,7 +4,7 @@ import { EXERCISES } from '../lib/exercises.mock';
 import { TExercise } from './types';
 
 type TExercisesStore = {
-	exercises: Record<string, TExercise>;
+	exercises: Record<TExercise['id'], TExercise>;
 	selectedExercises: string[];
 
 	selectExercise: (exerciseId: string) => void;

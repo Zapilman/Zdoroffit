@@ -1,21 +1,14 @@
-import { useCallback } from 'react';
 import { Pressable } from 'react-native';
-
-import { useBottomModal } from 'widgets/bottom-modal';
 
 import { DotsIcon } from 'shared/ui/icons';
 
-import { WorkoutOptionsModal } from './workout-options-modal';
+type THeaderOptionButtonProps = {
+	onOptionPress: () => void;
+};
 
-export const HeaderOptionButton = () => {
-	const workoutOptionsModal = useBottomModal()(WorkoutOptionsModal);
-
-	const handlePress = useCallback(async () => {
-		await workoutOptionsModal.showModal({});
-	}, []);
-
+export const HeaderOptionButton = ({ onOptionPress }: THeaderOptionButtonProps) => {
 	return (
-		<Pressable onPress={handlePress}>
+		<Pressable onPress={onOptionPress}>
 			<DotsIcon />
 		</Pressable>
 	);

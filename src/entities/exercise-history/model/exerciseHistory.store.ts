@@ -9,6 +9,8 @@ type TExerciseHistoryState = {
 	history: Record<TExerciseHistoryItem['_id'], TExerciseHistoryItem>;
 
 	addHistory: (item: TExerciseHistoryItem) => void;
+	clearHistory: () => void;
+	importHistory: (history: Record<TExerciseHistoryItem['_id'], TExerciseHistoryItem>) => void;
 };
 
 export const useExerciseHistory = create<TExerciseHistoryState>()(
@@ -18,6 +20,14 @@ export const useExerciseHistory = create<TExerciseHistoryState>()(
 
 			addHistory: (item: TExerciseHistoryItem) =>
 				set((state) => ({ history: { ...state.history, [item._id]: item } })),
+			clearHistory: () => {
+				set(() => ({ history: {} }));
+			},
+			importHistory: (history: Record<TExerciseHistoryItem['_id'], TExerciseHistoryItem>) => {
+				set(() => ({
+					history,
+				}));
+			},
 		}),
 		{
 			name: 'exercise-history-storage',

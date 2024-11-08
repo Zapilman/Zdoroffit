@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { PortalProvider } from '@gorhom/portal';
@@ -8,6 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 import { BottomModalProvider } from 'widgets/bottom-modal';
 
 import { Colors } from 'shared/config';
+import { Typography } from 'shared/ui';
 import { WorkoutIcon } from 'shared/ui/icons';
 
 SplashScreen.preventAutoHideAsync();
@@ -40,9 +41,9 @@ export default function RootLayout() {
 							name="index"
 							options={{
 								tabBarIcon: ({ focused }) => (
-									<View style={{ alignItems: 'center', paddingTop: 10 }}>
+									<View style={styles.tabBarIcon}>
 										<WorkoutIcon />
-										<Text>home</Text>
+										<Typography kind={focused ? 'primary' : 'default'}>History</Typography>
 									</View>
 								),
 							}}
@@ -50,7 +51,7 @@ export default function RootLayout() {
 						<Tabs.Screen
 							name="activities"
 							options={{
-								tabBarIcon: ({ focused }) => (
+								tabBarIcon: () => (
 									<>
 										<WorkoutIcon />
 										<Text>hello</Text>
@@ -58,19 +59,7 @@ export default function RootLayout() {
 								),
 								tabBarButton: ({ children, onPress }) => (
 									<Pressable onPress={onPress}>
-										<View
-											style={{
-												alignItems: 'center',
-												justifyContent: 'center',
-												height: 80,
-												width: 80,
-												borderRadius: 40,
-												backgroundColor: Colors.SECONDARY,
-												top: -30,
-											}}
-										>
-											{children}
-										</View>
+										<View style={styles.mainBtn}>{children}</View>
 									</Pressable>
 								),
 							}}
@@ -78,8 +67,8 @@ export default function RootLayout() {
 						<Tabs.Screen
 							name="status/index"
 							options={{
-								tabBarIcon: ({ focused }) => (
-									<View style={{ alignItems: 'center', paddingTop: 10 }}>
+								tabBarIcon: () => (
+									<View style={styles.tabBarIcon}>
 										<WorkoutIcon />
 										<Text>home</Text>
 									</View>
@@ -92,3 +81,19 @@ export default function RootLayout() {
 		</PortalProvider>
 	);
 }
+
+const styles = StyleSheet.create({
+	tabBarIcon: {
+		alignItems: 'center',
+		paddingTop: 10,
+	},
+	mainBtn: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		height: 80,
+		width: 80,
+		borderRadius: 40,
+		backgroundColor: Colors.SECONDARY,
+		top: -30,
+	},
+});

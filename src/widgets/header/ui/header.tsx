@@ -1,17 +1,19 @@
-import { memo } from 'react';
+import { ComponentProps, memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Typography } from 'shared/ui';
 
 import { HeaderOptionButton } from './option-button';
 
-const Header = () => {
+type THeaderProps = ComponentProps<typeof HeaderOptionButton>;
+
+const Header = ({ onOptionPress }: THeaderProps) => {
 	return (
 		<View style={styles.header}>
 			<Typography size="lg" weight="bold">
 				Zdoroffit
 			</Typography>
-			<HeaderOptionButton />
+			<HeaderOptionButton onOptionPress={onOptionPress} />
 		</View>
 	);
 };

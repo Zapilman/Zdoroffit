@@ -37,7 +37,7 @@ export const NoteModal = memo(({ closeModal, title }: TNoteModalProps) => {
 				</Typography>
 			</Modal.Title>
 			<FormProvider {...methods}>
-				<View style={styles.modal}>
+				<View>
 					<ControlledInput control={methods.control} name="note" labelText="adas" />
 				</View>
 				<Modal.Actions>
@@ -46,8 +46,4 @@ export const NoteModal = memo(({ closeModal, title }: TNoteModalProps) => {
 			</FormProvider>
 		</Modal>
 	);
-});
-
-const styles = StyleSheet.create({
-	modal: {},
 });
