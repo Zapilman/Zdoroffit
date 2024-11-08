@@ -1,15 +1,16 @@
-import { ReactNode, memo } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ReactNode } from 'react';
+import { ScrollView, StyleSheet, ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 type TPageLayoutProps = {
 	children: ReactNode;
+	style?: ViewStyle;
 };
 
-export const PageLayout = ({ children }: TPageLayoutProps) => {
+export const PageLayout = ({ children, style }: TPageLayoutProps) => {
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			<ScrollView style={styles.layout}>{children}</ScrollView>
+			<ScrollView style={[styles.layout, style]}>{children}</ScrollView>
 		</SafeAreaView>
 	);
 };

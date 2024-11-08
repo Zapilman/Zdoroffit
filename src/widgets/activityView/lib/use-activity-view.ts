@@ -1,7 +1,6 @@
-import { RefObject, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { BackHandler } from 'react-native';
 
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useFocusEffect } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
@@ -10,10 +9,10 @@ import { useExercises } from 'entities/exercise';
 
 export const useActivityView = ({
 	activityId,
-	modalRef,
+	closeModal,
 }: {
 	activityId?: string;
-	modalRef: RefObject<BottomSheetModal>;
+	closeModal: () => void;
 }) => {
 	const activity = useActivity(
 		useShallow((state) => state.activities.find((activity) => activity._id === activityId)),
@@ -24,11 +23,11 @@ export const useActivityView = ({
 		),
 	);
 
-	const closeModal = useCallback(() => {
-		modalRef.current?.dismiss();
+	const handleCloseModal = useCallback(() => {
+		closeModal();
 
 		return true;
-	}, []);
+	}, [closeModal]);
 
 	useEffect(() => {
 		if (!activity) {
@@ -37,7 +36,7 @@ export const useActivityView = ({
 	}, [activity, closeModal]);
 
 	useFocusEffect(() => {
-		const backHandler = BackHandler.addEventListener('hardwareBackPress', closeModal);
+		const backHandler = BackHandler.addEventListener('hardwareBackPress', handleCloseModal);
 
 		return () => backHandler.remove();
 	});

@@ -1,6 +1,8 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useFocusEffect } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
 import { ActivitiesList, useActivity } from 'entities/activity';
@@ -10,6 +12,7 @@ import { AddExercise } from 'entities/exercise';
 
 import { ActivityView } from 'widgets/activityView';
 import { useBottomModal } from 'widgets/bottom-modal';
+import { Header } from 'widgets/header';
 import { PageLayout } from 'widgets/pageLayout';
 
 import { ActivityOptionsModal } from './activity-options-modal';
@@ -44,7 +47,8 @@ const ActivitiesScreen = () => {
 	}, []);
 
 	return (
-		<PageLayout>
+		<PageLayout style={styles.activityScreen}>
+			<Header />
 			<AddExercise selectedExercisesCount={activities.length} />
 
 			<ActivitiesList renderCard={renderActivityCard} />
@@ -55,6 +59,9 @@ const ActivitiesScreen = () => {
 export default memo(ActivitiesScreen);
 
 const styles = StyleSheet.create({
+	activityScreen: {
+		marginBottom: 100,
+	},
 	activityCard: {
 		marginTop: 30,
 		zIndex: 2,

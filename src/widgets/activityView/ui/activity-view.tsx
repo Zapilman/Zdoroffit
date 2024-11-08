@@ -14,13 +14,15 @@ import { ActivityVideo } from './activity-video';
 
 type TActivityViewProps = {
 	modalRef: RefObject<BottomSheetModal>;
-	closeModal: () => void;
 	activityId: string | undefined;
+	closeModal: () => void;
 };
 
-const ActivityView = ({ modalRef, activityId }: TActivityViewProps) => {
-	const { exercise, closeSettingsModal } = useActivityView({ modalRef, activityId });
-
+const ActivityView = ({ modalRef, activityId, closeModal }: TActivityViewProps) => {
+	const { exercise, closeSettingsModal } = useActivityView({
+		activityId,
+		closeModal,
+	});
 	return (
 		<BottomSheetModal
 			ref={modalRef}
