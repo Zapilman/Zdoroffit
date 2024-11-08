@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { PortalProvider } from '@gorhom/portal';
-import { SplashScreen, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { BottomModalProvider } from 'widgets/bottom-modal';
@@ -10,8 +10,6 @@ import { BottomModalProvider } from 'widgets/bottom-modal';
 import { Colors } from 'shared/config';
 import { Typography } from 'shared/ui';
 import { WorkoutIcon } from 'shared/ui/icons';
-
-SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 	return (

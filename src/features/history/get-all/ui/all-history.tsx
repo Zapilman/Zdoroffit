@@ -1,11 +1,11 @@
-import { ReactNode, memo, useCallback } from 'react';
-import { View } from 'react-native';
+import { ReactNode, memo } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { useShallow } from 'zustand/react/shallow';
 
 import { useExerciseHistory } from 'entities/exercise-history';
 
-import { Typography } from 'shared/ui';
+import { TABBAR_CONTENT_HEIGHT } from 'shared/config/tabbar';
 
 import { HistoryCard } from './history-card';
 
@@ -19,8 +19,7 @@ const AllHistory = ({ renderExercisePreview }: TAllHistoryProps) => {
 	);
 
 	return (
-		<View>
-			<Typography>AllHistsory</Typography>
+		<View style={styles.wrapper}>
 			{allHistory.map((historyItem, index) => (
 				<HistoryCard
 					key={index}
@@ -35,3 +34,9 @@ const AllHistory = ({ renderExercisePreview }: TAllHistoryProps) => {
 };
 
 export default memo(AllHistory);
+
+const styles = StyleSheet.create({
+	wrapper: {
+		marginBottom: TABBAR_CONTENT_HEIGHT + 30,
+	},
+});

@@ -1,1 +1,1 @@
-export { TABBAR_BOTTOM_INSENT, TABBAR_HEIGHT } from './sizes';
+export { TABBAR_BOTTOM_INSENT, TABBAR_HEIGHT, TABBAR_CONTENT_HEIGHT } from './sizes';
