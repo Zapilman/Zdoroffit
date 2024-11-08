@@ -3,7 +3,7 @@ import { Share } from 'react-native';
 
 import * as Sharing from 'expo-sharing';
 
-import { useExerciseHistory } from 'entities/exercise-history';
+import { formatHistoryForExport, useExerciseHistory } from 'entities/exercise-history';
 
 import { Button } from 'shared/ui';
 
@@ -14,8 +14,10 @@ const ShareHistoryBtn = () => {
 		const shareAllowed = await Sharing.isAvailableAsync();
 
 		if (shareAllowed) {
+			const minifiedHistory = formatHistoryForExport(history);
+
 			const shareRes = await Share.share({
-				message: JSON.stringify(history),
+				message: JSON.stringify(minifiedHistory),
 			});
 
 			console.log('shareRes', shareRes);

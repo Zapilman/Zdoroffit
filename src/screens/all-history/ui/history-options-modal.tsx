@@ -7,8 +7,6 @@ import { ClearHistoryBtn } from 'features/history/clear';
 import { ImportHistoryBtn } from 'features/history/import';
 import { ShareHistoryBtn } from 'features/history/share';
 
-import { Button } from 'shared/ui';
-
 type THistoryOptionsModalProps = {
 	closeModal: () => void;
 	modalRef: RefObject<BottomSheetModal>;

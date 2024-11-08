@@ -1,7 +1,11 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { View } from 'react-native';
 
-import { TExerciseHistoryItem } from 'entities/exercise-history';
+import {
+	TExerciseHistoryItem,
+	formatHistoryForImport,
+	validateHistory,
+} from 'entities/exercise-history';
 
 import { Button, ControlledInput, Typography } from 'shared/ui';
 import { Modal } from 'shared/ui/components/Modal';
@@ -10,21 +14,6 @@ import { EImportHistoryFieldNames, TImportHistoryFields } from '../model/types';
 
 type TImportHistoryModalProps = {
 	closeModal: (data: { history: Record<string, TExerciseHistoryItem> } | null) => void;
-};
-
-const validateHistory = (
-	history: Record<string, unknown>,
-): history is Record<string, TExerciseHistoryItem> => {
-	Object.values(history).forEach((historyItem) => {
-		if (typeof historyItem !== 'object' || historyItem === null) {
-			return false;
-		}
-
-		if (!('exerciseId' in historyItem)) {
-			return false;
-		}
-	});
-	return true;
 };
 
 export const ImportHistoryModal = ({ closeModal }: TImportHistoryModalProps) => {
@@ -38,7 +27,7 @@ export const ImportHistoryModal = ({ closeModal }: TImportHistoryModalProps) => 
 		const newHistory = JSON.parse(data[EImportHistoryFieldNames.CONFIG]);
 		if (validateHistory(newHistory))
 			closeModal({
-				history: newHistory,
+				history: formatHistoryForImport(newHistory),
 			});
 	};
 
