@@ -5,5 +5,4 @@ export type TActivity = {
 	setsCount: number;
 	repsCount: number;
 	imgUrl: string;
-	videoUrl: string;
 };

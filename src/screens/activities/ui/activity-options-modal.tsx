@@ -22,7 +22,7 @@ export const ActivityOptionsModal = memo(
 			<BottomSheetModal
 				ref={modalRef}
 				// onChange={handleChange}
-				onDismiss={() => closeModal()}
+				onDismiss={closeModal}
 				enablePanDownToClose
 				enableDismissOnClose
 			>

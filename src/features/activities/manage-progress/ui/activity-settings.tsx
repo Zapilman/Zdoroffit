@@ -19,7 +19,6 @@ export const ActivitySettings = memo(
 				</Modal.Title>
 				<Button title="Add Note" onPress={onAddNote} />
 				<Button title="Remove from Workout" onPress={onRemove} />
-				<Modal.Actions />
 			</Modal>
 		);
 	},

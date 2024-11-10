@@ -57,6 +57,12 @@ export default function RootLayout() {
 								<Stack.Screen name="exercises-by-muscle/[muscleName]" />
 								<Stack.Screen name="exercise-history/[exerciseId]" />
 								<Stack.Screen
+									name="saved-programs"
+									options={{
+										title: 'Saved Programs',
+									}}
+								/>
+								<Stack.Screen
 									name="exercises"
 									options={{
 										title: 'Add an exercise',

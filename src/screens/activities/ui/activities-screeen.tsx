@@ -15,6 +15,7 @@ import { useBottomModal } from 'widgets/bottom-modal';
 import { Header } from 'widgets/header';
 import { PageLayout } from 'widgets/pageLayout';
 
+import { ActivitiesOptionsModal } from './activities-option-modal';
 import { ActivityOptionsModal } from './activity-options-modal';
 
 const ActivitiesScreen = () => {
@@ -24,6 +25,7 @@ const ActivitiesScreen = () => {
 
 	const optionBottomModal = useBottomModal()(ActivityOptionsModal);
 	const activityViewBottomModal = useBottomModal()(ActivityView);
+	const activitiesOptionsModal = useBottomModal()(ActivitiesOptionsModal);
 
 	const showActivityView = (activityId: string) => async () => {
 		await activityViewBottomModal.showModal({ activityId });
@@ -32,6 +34,10 @@ const ActivitiesScreen = () => {
 	const handleOptionPress = (activityId: string) => async () => {
 		await optionBottomModal.showModal({ onRemove: () => removeActivity(activityId) });
 	};
+
+	const handleActivitiesOptionsPress = useCallback(async () => {
+		await activitiesOptionsModal.showModal({});
+	}, []);
 
 	const renderActivityCard = useCallback((activity: TActivity) => {
 		return (
@@ -48,7 +54,7 @@ const ActivitiesScreen = () => {
 
 	return (
 		<PageLayout style={styles.activityScreen}>
-			<Header />
+			<Header onOptionPress={handleActivitiesOptionsPress} />
 			<AddExercise selectedExercisesCount={activities.length} />
 
 			<ActivitiesList renderCard={renderActivityCard} />
