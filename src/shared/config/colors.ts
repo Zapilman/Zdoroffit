@@ -4,3 +4,5 @@ export const enum Colors {
 	ACCENT = '#F4F6FB',
 	BLACK = '#000',
 }
+
+// TODO: remove File

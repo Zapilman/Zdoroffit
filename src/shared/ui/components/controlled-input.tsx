@@ -21,6 +21,15 @@ const ControlledInput = <T extends FieldValues>({
 		name,
 	});
 
+	// return (
+	// 	<TextInput
+	// 		{...otherProps}
+	// 		label="Email"
+	// 		value={String(field.value)}
+	// 		onChangeText={field.onChange}
+	// 	/>
+	// );
+
 	return (
 		<Input
 			{...otherProps}

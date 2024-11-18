@@ -10,12 +10,12 @@
     ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "backgroundColor": "#6780c5",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#303244",
     "splash": {
       "image": "./assets/new_splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#6780c5"
+      "backgroundColor": "#303244"
     },
     "ios": {
       "supportsTablet": true
