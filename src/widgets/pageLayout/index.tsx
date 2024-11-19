@@ -1,30 +1,36 @@
 import { ReactNode } from 'react';
-import { ScrollView, StyleSheet, ViewStyle } from 'react-native';
-import { MD3Theme, useTheme } from 'react-native-paper';
+import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { TAppTheme, useAppTheme } from 'shared/lib/theme';
 
 type TPageLayoutProps = {
 	children: ReactNode;
+	scrollable?: boolean;
 	style?: ViewStyle;
 };
 
-export const PageLayout = ({ children, style }: TPageLayoutProps) => {
-	const theme = useTheme();
+export const PageLayout = ({ children, style, scrollable }: TPageLayoutProps) => {
+	const { theme } = useAppTheme();
+
 	const styles = getStyles(theme);
+
+	const ContainerComponent = scrollable ? ScrollView : View;
 
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			<ScrollView style={[styles.layout, style]}>{children}</ScrollView>
+			<ContainerComponent style={[styles.layout, style]}>{children}</ContainerComponent>
 		</SafeAreaView>
 	);
 };
 
-const getStyles = (theme: MD3Theme) =>
+const getStyles = (theme: TAppTheme) =>
 	StyleSheet.create({
 		wrapper: {
 			flex: 1,
 		},
 		layout: {
+			flex: 1,
 			paddingHorizontal: 20,
 			backgroundColor: theme.colors.primary,
 		},

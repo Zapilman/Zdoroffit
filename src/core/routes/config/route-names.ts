@@ -13,3 +13,5 @@ export const enum PathRoutes {
 
 	SAVED_PROGRAMS = '/saved-programs',
 }
+
+// TODO: remove routes

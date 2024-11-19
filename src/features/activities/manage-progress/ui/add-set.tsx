@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
 import { Colors } from 'shared/config';
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 type TAddSetProps = {
 	onPress: () => void;

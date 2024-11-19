@@ -4,7 +4,7 @@ import { Image, Pressable, StyleSheet, View, ViewProps } from 'react-native';
 import { PathRoutes } from 'core/routes';
 import { Link } from 'expo-router';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 import { CheckIcon, DotsIcon } from 'shared/ui/icons';
 
 type TExerciseCardProps = {
@@ -36,7 +36,7 @@ const ExerciseCard = ({
 				</View>
 			</Link>
 			<Pressable style={styles.exerciseInfo} onPress={onSelect}>
-				<Typography weight="bold" kind={selected ? 'primary' : 'default'}>
+				<Typography weight="bold" kind={selected ? 'primary' : 'text'}>
 					{title}
 				</Typography>
 			</Pressable>

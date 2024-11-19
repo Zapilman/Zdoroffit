@@ -1,97 +1,109 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Icon } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { PortalProvider } from '@gorhom/portal';
 import { Tabs } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 
-import { BottomModalProvider } from 'widgets/bottom-modal';
+import { OpenLayout } from 'widgets/open-layout';
 
-import { Colors } from 'shared/config';
-import { Typography } from 'shared/ui';
-import { WorkoutIcon } from 'shared/ui/icons';
+import { Routes } from 'shared/config/routes';
+import { TABBAR_HEIGHT } from 'shared/config/tabbar';
+import { useAppTheme } from 'shared/lib/theme';
+import { Typography } from 'shared/ui/components/Typography';
 
 export default function RootLayout() {
+	const { theme } = useAppTheme();
+
 	return (
-		<PortalProvider>
-			<BottomModalProvider>
-				<SafeAreaProvider>
-					<StatusBar style="dark" />
-					<Tabs
-						screenOptions={{
-							headerShown: false,
-							tabBarShowLabel: false,
-							tabBarStyle: {
-								position: 'absolute',
-								bottom: 27,
-								left: 16,
-								right: 16,
-								height: 72,
-								elevation: 0,
-								backgroundColor: 'white',
-								borderRadius: 16,
-								alignItems: 'center',
-								justifyContent: 'center',
-							},
+		<OpenLayout>
+			<SafeAreaProvider>
+				<Tabs
+					sceneContainerStyle={styles.containerStyle}
+					screenOptions={{
+						headerShown: false,
+						tabBarShowLabel: false,
+						tabBarStyle: {
+							position: 'absolute',
+							bottom: 27,
+							width: 'auto',
+							left: 30,
+							right: 30,
+							borderTopWidth: 0,
+							height: TABBAR_HEIGHT,
+							// height: 72,
+							// elevation: 0,
+							backgroundColor: theme.colors.secondary,
+							// borderWidth: 2,
+							// borderColor: 'black',
+							borderRadius: 32,
+							flexDirection: 'row',
+							// alignItems: 'center',
+							// justifyContent: 'center',
+						},
+					}}
+				>
+					<Tabs.Screen
+						name="index"
+						options={{
+							href: null,
 						}}
-					>
-						<Tabs.Screen
-							name="index"
-							options={{
-								tabBarIcon: ({ focused }) => (
-									<View style={styles.tabBarIcon}>
-										<WorkoutIcon />
-										<Typography kind={focused ? 'primary' : 'default'}>History</Typography>
-									</View>
-								),
-							}}
-						/>
-						<Tabs.Screen
-							name="activities"
-							options={{
-								tabBarIcon: () => (
-									<>
-										<WorkoutIcon />
-										<Text>hello</Text>
-									</>
-								),
-								tabBarButton: ({ children, onPress }) => (
-									<Pressable onPress={onPress}>
-										<View style={styles.mainBtn}>{children}</View>
-									</Pressable>
-								),
-							}}
-						/>
-						<Tabs.Screen
-							name="status/index"
-							options={{
-								tabBarIcon: () => (
-									<View style={styles.tabBarIcon}>
-										<WorkoutIcon />
-										<Text>home</Text>
-									</View>
-								),
-							}}
-						/>
-					</Tabs>
-				</SafeAreaProvider>
-			</BottomModalProvider>
-		</PortalProvider>
+					/>
+					<Tabs.Screen
+						name={Routes.WORKOUT}
+						options={{
+							tabBarIcon: ({ focused }) => (
+								<View style={styles.tabBarIcon}>
+									<Icon
+										source="alpha-w-box"
+										size={24}
+										color={focused ? theme.colors.focus : theme.colors.primary}
+									/>
+									<Typography kind={focused ? 'focus' : 'primary'}>WorkOut</Typography>
+								</View>
+							),
+						}}
+					/>
+					<Tabs.Screen
+						name="activities"
+						options={{
+							tabBarIcon: ({ focused }) => (
+								<View style={styles.tabBarIcon}>
+									<Icon
+										source="chart-line"
+										size={24}
+										color={focused ? theme.colors.focus : theme.colors.primary}
+									/>
+									<Typography kind={focused ? 'focus' : 'primary'}>Target</Typography>
+								</View>
+							),
+						}}
+					/>
+					<Tabs.Screen
+						name="status/index"
+						options={{
+							tabBarIcon: ({ focused }) => (
+								<View style={styles.tabBarIcon}>
+									<Icon
+										source="calendar-month"
+										size={24}
+										color={focused ? theme.colors.focus : theme.colors.primary}
+									/>
+									<Typography kind={focused ? 'focus' : 'primary'}>Log</Typography>
+								</View>
+							),
+						}}
+					/>
+				</Tabs>
+			</SafeAreaProvider>
+		</OpenLayout>
 	);
 }
 
 const styles = StyleSheet.create({
 	tabBarIcon: {
 		alignItems: 'center',
-		paddingTop: 10,
 	},
-	mainBtn: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		height: 80,
-		width: 80,
-		borderRadius: 40,
-		backgroundColor: Colors.SECONDARY,
-		top: -30,
+	containerStyle: {
+		backgroundColor: 'transparent',
 	},
 });

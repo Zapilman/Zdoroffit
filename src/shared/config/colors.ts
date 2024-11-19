@@ -1,8 +1,8 @@
-export const enum Colors {
-	PRIMARY = '#6780c5',
-	SECONDARY = '#4AA9BA',
-	ACCENT = '#F4F6FB',
-	BLACK = '#000',
-}
+export const Colors = {
+	PRIMARY: 'red',
+	SECONDARY: 'red',
+	ACCENT: 'red',
+	BLACK: 'red',
+};
 
 // TODO: remove File

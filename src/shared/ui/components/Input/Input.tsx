@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import { StyleSheet, TextInput, TextInputProps, View, ViewProps } from 'react-native';
 
 import { Colors, EFontFamily } from 'shared/config';
-import Typography from 'shared/ui/Typography/Typography';
+import Typography from 'shared/ui/components/Typography/Typography';
 
 type TInputProps = ViewProps & {
 	labelText: string;

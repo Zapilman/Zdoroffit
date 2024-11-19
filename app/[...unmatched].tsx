@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 export default () => {
 	return (

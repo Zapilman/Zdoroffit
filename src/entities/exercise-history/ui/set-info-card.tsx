@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 type TSetInfoCardProps = {
 	repsCount: number;

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 
-import Typography from '../Typography/Typography';
+import Typography from '../components/Typography/Typography';
 import { styles } from './Button.styles';
 
 const Button = ({ title, style, ...otherProps }: PressableProps & { title: string }) => {

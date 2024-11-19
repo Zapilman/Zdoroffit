@@ -1,9 +1,3 @@
-import { AllHistoryScreen } from 'screens/all-history';
+import { Redirect } from 'expo-router';
 
-import { PageLayout } from 'widgets/pageLayout';
-
-export default () => (
-	<PageLayout>
-		<AllHistoryScreen />
-	</PageLayout>
-);
+export default () => <Redirect href="(tabs)/workout" />;

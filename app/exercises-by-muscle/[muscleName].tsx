@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLocalSearchParams } from 'expo-router';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 export default () => {
 	const { muscleName } = useLocalSearchParams<{ muscleName: string }>();

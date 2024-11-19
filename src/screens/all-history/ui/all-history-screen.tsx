@@ -1,12 +1,12 @@
 import { memo, useCallback } from 'react';
-import { View } from 'react-native';
 
 import { ExercisePreview } from 'entities/exercise';
 
 import { AllHistory } from 'features/history/get-all';
 
-import { useBottomModal } from 'widgets/bottom-modal';
 import { Header } from 'widgets/header';
+
+import { useBottomModal } from 'shared/lib/bottom-modal';
 
 import { HistoryOptionsModal } from './history-options-modal';
 
@@ -22,10 +22,10 @@ const AllHistoryScreen = () => {
 	}, []);
 
 	return (
-		<View>
+		<>
 			<Header onOptionPress={handleOptionBtnPress} />
 			<AllHistory renderExercisePreview={handleRenderPreview} />
-		</View>
+		</>
 	);
 };
 

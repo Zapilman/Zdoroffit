@@ -1,9 +1,9 @@
-import { Fragment, memo, useMemo, useState } from 'react';
+import { Fragment, memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { useShallow } from 'zustand/react/shallow';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 import { sortExercisesByLetter } from '../lib/sort-by-letter';
 import { useExercises } from '../model/exercises.store';

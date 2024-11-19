@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import dayjs from 'dayjs';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 import ProgressList from 'shared/ui/components/progress-list';
 
 import { TExerciseHistoryItem } from '../model/types';

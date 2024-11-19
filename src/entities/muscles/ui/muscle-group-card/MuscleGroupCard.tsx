@@ -4,7 +4,7 @@ import { Image, Pressable, View } from 'react-native';
 import { PathRoutes } from 'core/routes';
 import { Link } from 'expo-router';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 import { ArrowIcon } from 'shared/ui/icons';
 
 import { styles } from './MuscleGroupCard.styles';

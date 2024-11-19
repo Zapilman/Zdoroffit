@@ -3,7 +3,7 @@ import { Dimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SceneMap, TabView } from 'react-native-tab-view';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 type TFirstRouteProps = {
 	onLayout: (height: number) => void;

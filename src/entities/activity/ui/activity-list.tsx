@@ -2,6 +2,8 @@ import { ReactNode, memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Colors } from 'shared/config';
+import { CenterContainer } from 'shared/ui/CenterContainer';
+import { Typography } from 'shared/ui/components/Typography';
 
 import { useActivity } from '../model/activity.store';
 import { TActivity } from '../model/types';
@@ -12,6 +14,15 @@ type TActivityListProps = {
 
 const ActivityList = ({ renderCard }: TActivityListProps) => {
 	const activities = useActivity((state) => state.activities);
+
+	if (activities.length === 0)
+		return (
+			<CenterContainer>
+				<Typography kind="secondary" size="lg" weight="bold">
+					There is no activities
+				</Typography>
+			</CenterContainer>
+		);
 
 	return (
 		<View style={styles.activities}>

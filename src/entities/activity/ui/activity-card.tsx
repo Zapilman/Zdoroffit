@@ -4,7 +4,7 @@ import { Image, Pressable, StyleSheet, View, ViewProps } from 'react-native';
 import { PathRoutes } from 'core/routes';
 import { Link } from 'expo-router';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 import { DotsIcon } from 'shared/ui/icons';
 
 type TActivityCardProps = {

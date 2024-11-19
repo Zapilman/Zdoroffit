@@ -1,6 +1,8 @@
 import { TextProps } from 'react-native';
 
-export type TTypographyKind = 'primary' | 'accent' | 'secondary' | 'default';
+import { TAppTheme } from 'shared/lib/theme';
+
+export type TTypographyKind = keyof TAppTheme['colors'];
 export type TTypographyWeight = 'bold' | 'regular';
 export type TTypographySize = 'sm' | 'md' | 'lg';
 

@@ -1,6 +1,6 @@
 import { memo, useDeferredValue, useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Searchbar, useTheme } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 
 import { ExerciseList, searchExercisesByName } from 'entities/exercise';
 import { useExercises } from 'entities/exercise/model/exercises.store';
@@ -8,10 +8,8 @@ import { useExercises } from 'entities/exercise/model/exercises.store';
 import AddExerciseToActivities from 'features/exercise/add-exercise-to-activities';
 
 import { Colors } from 'shared/config';
-import { Input } from 'shared/ui/components/Input';
 
 const ExercisesScreen = () => {
-	const theme = useTheme();
 	const [searchValue, setSearchValue] = useState('');
 	const deferredSearchValue = useDeferredValue(searchValue);
 

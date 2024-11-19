@@ -1,12 +1,9 @@
 import { StyleSheet, TextStyle } from 'react-native';
 
-import { Colors, EFontFamily } from 'shared/config';
+import { EFontFamily } from 'shared/config';
+import { TAppTheme, useAppTheme } from 'shared/lib/theme';
 
 import { TTypographyKind, TTypographySize, TTypographyWeight } from './Typography.types';
-
-export const styles = StyleSheet.create({
-	typography: {},
-});
 
 export const weightStyles: Record<TTypographyWeight, TextStyle> = {
 	bold: {
@@ -17,25 +14,27 @@ export const weightStyles: Record<TTypographyWeight, TextStyle> = {
 	},
 };
 
-export const colorStyles: Record<TTypographyKind, TextStyle> = {
-	accent: {
-		color: Colors.ACCENT,
-	},
-	primary: {
-		color: Colors.PRIMARY,
-	},
-	secondary: {
-		color: Colors.SECONDARY,
-	},
-	default: {
-		color: Colors.BLACK,
-	},
-};
-
 export const sizeStyles: Record<TTypographySize, TextStyle> = {
 	sm: {
 		fontSize: 12,
 	},
 	md: { fontSize: 14 },
 	lg: { fontSize: 18 },
+};
+
+export const getThemeStyles = (theme: TAppTheme) =>
+	StyleSheet.create({
+		text: {
+			color: theme.colors.text,
+		},
+	});
+
+export const useThemeStyles = (kind: TTypographyKind) => {
+	const { theme } = useAppTheme();
+
+	return StyleSheet.create({
+		typography: {
+			color: theme.colors[kind],
+		},
+	});
 };

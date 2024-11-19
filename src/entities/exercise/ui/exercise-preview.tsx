@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { useShallow } from 'zustand/react/shallow';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 import { useExercises } from '../model/exercises.store';
 import { TExercise } from '../model/types';

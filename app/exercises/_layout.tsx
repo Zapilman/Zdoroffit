@@ -6,7 +6,10 @@ import {
 import { ParamListBase, TabNavigationState } from '@react-navigation/native';
 import { withLayoutContext } from 'expo-router';
 
+import { OpenLayout } from 'widgets/open-layout';
+
 import { Colors } from 'shared/config';
+import { useAppTheme } from 'shared/lib/theme';
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -17,18 +20,27 @@ const MaterialTopTabs = withLayoutContext<
 	MaterialTopTabNavigationEventMap
 >(Navigator);
 
-export default () => (
-	<>
-		<MaterialTopTabs
-			screenOptions={{
-				tabBarActiveTintColor: Colors.PRIMARY,
-				tabBarLabelStyle: { fontSize: 14, fontWeight: 'bold', textTransform: 'capitalize' },
-				tabBarIndicatorStyle: { backgroundColor: Colors.PRIMARY, height: 2 },
-			}}
-		>
-			<MaterialTopTabs.Screen name="index" options={{ title: 'All' }} />
-			<MaterialTopTabs.Screen name="by-muscles" options={{ title: 'By Muscle' }} />
-			<MaterialTopTabs.Screen name="categories" options={{ title: 'By Categories' }} />
-		</MaterialTopTabs>
-	</>
-);
+export default () => {
+	const { theme } = useAppTheme();
+	return (
+		<OpenLayout>
+			<MaterialTopTabs
+				screenOptions={{
+					tabBarActiveTintColor: theme.colors.focus,
+					tabBarInactiveTintColor: theme.colors.text,
+					tabBarLabelStyle: {
+						fontSize: 14,
+						fontWeight: 'bold',
+						textTransform: 'capitalize',
+					},
+					tabBarIndicatorStyle: { backgroundColor: theme.colors.primary, height: 2 },
+					tabBarContentContainerStyle: { backgroundColor: 'transparent' },
+				}}
+			>
+				<MaterialTopTabs.Screen name="index" options={{ title: 'All' }} />
+				<MaterialTopTabs.Screen name="by-muscles" options={{ title: 'By Muscle' }} />
+				<MaterialTopTabs.Screen name="categories" options={{ title: 'By Categories' }} />
+			</MaterialTopTabs>
+		</OpenLayout>
+	);
+};

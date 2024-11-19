@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { Colors } from 'shared/config';
 
-import Typography from '../Typography/Typography';
+import Typography from './Typography/Typography';
 
 type TProgressListProps<ListItem extends Record<string, unknown>> = {
 	list: ListItem[];

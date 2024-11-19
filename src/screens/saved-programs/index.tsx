@@ -10,7 +10,7 @@ import { useProgram } from 'features/saved-program';
 
 import { PageLayout } from 'widgets/pageLayout';
 
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 export const SavedProgramsScreen = () => {
 	const savedPrograms = useProgram((state) => state.savedPrograms);

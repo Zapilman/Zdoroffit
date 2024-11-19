@@ -6,7 +6,7 @@ import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { ModalProvider } from 'entities/modal';
 
 import { Colors } from 'shared/config';
-import { Typography } from 'shared/ui';
+import { Typography } from 'shared/ui/components/Typography';
 
 import { useActivityView } from '../lib/use-activity-view';
 import { ActivityForm } from './activity-form';
