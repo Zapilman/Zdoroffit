@@ -1,3 +1,5 @@
 export const enum Routes {
-	WORKOUT = 'workout',
+	WORKOUT = '(tabs)',
+
+	EXERCISES = '(stack)/(top-tabs)',
 }

@@ -6,7 +6,7 @@ const CrossIcon = (props: SvgProps) => (
 		<G fill="none" fillRule="evenodd">
 			<Path d="M0 0h.6v.6H0V0z" />
 			<Path
-				stroke="#0C0310"
+				stroke={props.color || '#0C0310'}
 				strokeLinecap="round"
 				strokeWidth={0.05}
 				d="m.425.175-.25.25M.175.175l.25.25"

@@ -5,5 +5,9 @@ export const LIGHT_THEME = {
 		accent: '#1C2127',
 		text: 'black',
 		focus: '#e46a13',
+		surfaceVariant: 'green',
+		onSurfaceVariant: 'black',
+		onSurface: 'black',
+		outline: '#303244',
 	},
 };

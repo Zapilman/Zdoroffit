@@ -4,6 +4,8 @@ import { Button } from 'react-native-paper';
 
 import { PortalProvider } from '@gorhom/portal';
 
+import { ModalProvider } from 'entities/modal';
+
 import { BottomModalProvider } from 'shared/lib/bottom-modal';
 import { TAppTheme, useAppTheme } from 'shared/lib/theme';
 
@@ -17,7 +19,9 @@ export const OpenLayout = ({ children }: { children: ReactNode }) => {
 				Open
 			</Button>
 			<PortalProvider>
-				<BottomModalProvider>{children}</BottomModalProvider>
+				<ModalProvider>
+					<BottomModalProvider>{children}</BottomModalProvider>
+				</ModalProvider>
 			</PortalProvider>
 		</View>
 	);

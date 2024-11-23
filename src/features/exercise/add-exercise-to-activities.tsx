@@ -10,11 +10,7 @@ import { useExercises } from 'entities/exercise/model/exercises.store';
 
 import { Button } from 'shared/ui';
 
-type TAddExerciseToActivityProps = {
-	children: ReactNode;
-};
-
-const AddExerciseToActivity = ({ children }: TAddExerciseToActivityProps) => {
+const AddExerciseToActivity = () => {
 	const [selectedExercises, exercises, clearSelected] = useExercises(
 		useShallow((state) => [state.selectedExercises, state.exercises, state.clearSelected]),
 	);
@@ -40,7 +36,6 @@ const AddExerciseToActivity = ({ children }: TAddExerciseToActivityProps) => {
 
 	return (
 		<>
-			{children}
 			{!!selectedExercises.length && (
 				<Portal>
 					<Button

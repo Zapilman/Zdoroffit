@@ -5,5 +5,9 @@ export const DARK_THEME = {
 		accent: '#1C2127',
 		text: 'white',
 		focus: '#e46a13',
+		surfaceVariant: 'red',
+		onSurfaceVariant: 'white',
+		onSurface: 'white',
+		outline: '#EDEEF8',
 	},
 };

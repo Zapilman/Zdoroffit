@@ -4,9 +4,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Tabs } from 'expo-router';
 
-import { OpenLayout } from 'widgets/open-layout';
-
-import { Routes } from 'shared/config/routes';
 import { TABBAR_HEIGHT } from 'shared/config/tabbar';
 import { useAppTheme } from 'shared/lib/theme';
 import { Typography } from 'shared/ui/components/Typography';
@@ -15,95 +12,83 @@ export default function RootLayout() {
 	const { theme } = useAppTheme();
 
 	return (
-		<OpenLayout>
-			<SafeAreaProvider>
-				<Tabs
-					sceneContainerStyle={styles.containerStyle}
-					screenOptions={{
-						headerShown: false,
-						tabBarShowLabel: false,
-						tabBarStyle: {
-							position: 'absolute',
-							bottom: 27,
-							width: 'auto',
-							left: 30,
-							right: 30,
-							borderTopWidth: 0,
-							height: TABBAR_HEIGHT,
-							// height: 72,
-							// elevation: 0,
-							backgroundColor: theme.colors.secondary,
-							// borderWidth: 2,
-							// borderColor: 'black',
-							borderRadius: 32,
-							flexDirection: 'row',
-							// alignItems: 'center',
-							// justifyContent: 'center',
-						},
+		<SafeAreaProvider>
+			<Tabs
+				screenOptions={{
+					headerShown: false,
+					tabBarShowLabel: false,
+					tabBarStyle: {
+						position: 'absolute',
+						bottom: 27,
+						width: 'auto',
+						left: 30,
+						right: 30,
+						borderTopWidth: 0,
+						height: TABBAR_HEIGHT,
+						// height: 72,
+						// elevation: 0,
+						backgroundColor: theme.colors.secondary,
+						// borderWidth: 2,
+						// borderColor: 'black',
+						borderRadius: 32,
+						flexDirection: 'row',
+						// alignItems: 'center',
+						// justifyContent: 'center',
+					},
+				}}
+			>
+				<Tabs.Screen
+					name="index"
+					options={{
+						tabBarIcon: ({ focused }) => (
+							<View style={styles.tabBarIcon}>
+								<Icon
+									source="alpha-w-box"
+									size={24}
+									color={focused ? theme.colors.focus : theme.colors.primary}
+								/>
+								<Typography kind={focused ? 'focus' : 'primary'}>WorkOut</Typography>
+							</View>
+						),
 					}}
-				>
-					<Tabs.Screen
-						name="index"
-						options={{
-							href: null,
-						}}
-					/>
-					<Tabs.Screen
-						name={Routes.WORKOUT}
-						options={{
-							tabBarIcon: ({ focused }) => (
-								<View style={styles.tabBarIcon}>
-									<Icon
-										source="alpha-w-box"
-										size={24}
-										color={focused ? theme.colors.focus : theme.colors.primary}
-									/>
-									<Typography kind={focused ? 'focus' : 'primary'}>WorkOut</Typography>
-								</View>
-							),
-						}}
-					/>
-					<Tabs.Screen
-						name="activities"
-						options={{
-							tabBarIcon: ({ focused }) => (
-								<View style={styles.tabBarIcon}>
-									<Icon
-										source="chart-line"
-										size={24}
-										color={focused ? theme.colors.focus : theme.colors.primary}
-									/>
-									<Typography kind={focused ? 'focus' : 'primary'}>Target</Typography>
-								</View>
-							),
-						}}
-					/>
-					<Tabs.Screen
-						name="status/index"
-						options={{
-							tabBarIcon: ({ focused }) => (
-								<View style={styles.tabBarIcon}>
-									<Icon
-										source="calendar-month"
-										size={24}
-										color={focused ? theme.colors.focus : theme.colors.primary}
-									/>
-									<Typography kind={focused ? 'focus' : 'primary'}>Log</Typography>
-								</View>
-							),
-						}}
-					/>
-				</Tabs>
-			</SafeAreaProvider>
-		</OpenLayout>
+				/>
+				<Tabs.Screen
+					name="activities"
+					options={{
+						tabBarIcon: ({ focused }) => (
+							<View style={styles.tabBarIcon}>
+								<Icon
+									source="chart-line"
+									size={24}
+									color={focused ? theme.colors.focus : theme.colors.primary}
+								/>
+								<Typography kind={focused ? 'focus' : 'primary'}>Target</Typography>
+							</View>
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name="status/index"
+					options={{
+						tabBarIcon: ({ focused }) => (
+							<View style={styles.tabBarIcon}>
+								<Icon
+									source="calendar-month"
+									size={24}
+									color={focused ? theme.colors.focus : theme.colors.primary}
+								/>
+								<Typography kind={focused ? 'focus' : 'primary'}>Log</Typography>
+							</View>
+						),
+					}}
+				/>
+			</Tabs>
+		</SafeAreaProvider>
 	);
 }
 
 const styles = StyleSheet.create({
 	tabBarIcon: {
 		alignItems: 'center',
-	},
-	containerStyle: {
-		backgroundColor: 'transparent',
 	},
 });

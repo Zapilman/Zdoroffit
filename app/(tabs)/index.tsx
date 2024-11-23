@@ -1,3 +1,4 @@
 import { Redirect } from 'expo-router';
+import { ActivitiesScreen } from 'screens/activities';
 
-export default () => <Redirect href="(tabs)/workout" />;
+export default () => <ActivitiesScreen />;

@@ -22,12 +22,12 @@ const ExerciseList = ({ exercisesList }: TExerciseListProps) => {
 	const sortedByLetter = useMemo(() => sortExercisesByLetter(exercisesList), [exercisesList]);
 
 	return (
-		<ScrollView>
+		<ScrollView showsVerticalScrollIndicator={false}>
 			{Object.keys(sortedByLetter)
 				.sort()
 				.map((exerciseLetter) => (
 					<Fragment key={exerciseLetter}>
-						<Typography style={styles.titleLetter} weight="bold" kind="primary">
+						<Typography style={styles.titleLetter} weight="bold" kind="text">
 							{exerciseLetter}
 						</Typography>
 						<View>
@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
 		paddingBottom: 30,
 	},
 	titleLetter: {
-		paddingLeft: 20,
 		paddingBottom: 20,
 	},
 });
