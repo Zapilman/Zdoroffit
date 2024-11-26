@@ -44,22 +44,18 @@ export const ActivitySet = memo(
 			<View style={styles.wrapper}>
 				<View style={[styles.setWrapper, style]} {...otherProps}>
 					<ControlledInput
-						labelText="reps"
+						label="reps"
 						style={styles.setInput}
 						control={control}
 						name={`${fieldPrefix}.${EActivityFieldNames.REP_COUNT}`}
-						inputProps={{
-							keyboardType: 'number-pad',
-						}}
+						keyboardType="numeric"
 					/>
 					<ControlledInput
-						labelText="weight"
+						label="weight"
 						style={styles.setInput}
 						control={control}
 						name={`${fieldPrefix}.${EActivityFieldNames.LIFTED_WEIGHT}`}
-						inputProps={{
-							keyboardType: 'number-pad',
-						}}
+						keyboardType="numeric"
 					/>
 					<Pressable onPress={handleOpenModal}>
 						<DotsIcon />
@@ -70,7 +66,7 @@ export const ActivitySet = memo(
 					<ControlledInput
 						control={control}
 						key={field.id}
-						labelText="Note"
+						label="Note"
 						name={`${fieldPrefix}.${EActivityFieldNames.SET_NOTES}.${index}.${EActivityFieldNames.SET_NOTE}`}
 					/>
 				))}

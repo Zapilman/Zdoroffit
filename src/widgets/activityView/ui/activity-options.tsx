@@ -2,14 +2,14 @@ import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
 
-import { PathRoutes } from 'core/routes';
 import { Link } from 'expo-router';
 
 import { useActivity } from 'entities/activity';
 import { useModal } from 'entities/modal';
 
 import { Colors } from 'shared/config';
-import { Button as UIButton } from 'shared/ui';
+import { Routes } from 'shared/config/routes';
+import { Typography } from 'shared/ui/components/Typography';
 
 import { NoteModal } from './note-modal';
 
@@ -30,7 +30,7 @@ export const ActivityOptionButtons = memo(
 		}, [activityId]);
 
 		const handleAddNote = useCallback(async () => {
-			const noteRes = await noteModal.showModal({ title: 'add Note' });
+			const noteRes = await noteModal.showModal({ title: 'Add Note' });
 			if (noteRes?.note) {
 				onAddNote?.(noteRes.note);
 			}
@@ -39,14 +39,17 @@ export const ActivityOptionButtons = memo(
 		return (
 			<View style={styles.buttonGroup}>
 				{exerciseId && (
-					<Link href={`${PathRoutes.EXERCISE_HISTORY}/${exerciseId}`} asChild>
-						<UIButton style={styles.button} title="History" />
+					<Link href={`${Routes.EXERCISE_HISTORY}/${exerciseId}`} asChild>
+						<Button mode="outlined">
+							<Typography>History</Typography>
+						</Button>
 					</Link>
 				)}
-				<UIButton style={styles.button} title="Add Note" onPress={handleAddNote} />
-				{/* <UIButton style={styles.button} title="Remove" onPress={handleRemoveActivity} /> */}
-				<Button mode="contained" onPress={handleRemoveActivity}>
-					Remove
+				<Button mode="outlined" onPress={handleAddNote}>
+					<Typography>Add Note</Typography>
+				</Button>
+				<Button mode="outlined" onPress={handleRemoveActivity}>
+					<Typography>Remove</Typography>
 				</Button>
 			</View>
 		);

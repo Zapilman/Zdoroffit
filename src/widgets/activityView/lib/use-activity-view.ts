@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { BackHandler } from 'react-native';
 
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useActivity } from 'entities/activity';

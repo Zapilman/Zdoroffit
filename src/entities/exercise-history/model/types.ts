@@ -11,3 +11,7 @@ export type TExerciseHistoryItem = {
 	dateCreated: Date;
 	generalNote?: string;
 };
+
+export class HistoryValidationErrorNotObject extends Error {}
+export class HistoryValidationErrorInvalidFormat extends Error {}
+export class HistoryValidationErrorNotExist extends Error {}

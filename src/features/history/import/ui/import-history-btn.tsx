@@ -15,6 +15,8 @@ const ImportHistoryBtn = () => {
 
 	const handlePress = useCallback(async () => {
 		const modalRes = await importHistoryModal.showModal({});
+		console.log('modalRes', modalRes);
+
 		if (modalRes?.history) {
 			importHistory(modalRes.history);
 		}

@@ -1,4 +1,9 @@
-import { TExerciseHistoryItem } from '../model/types';
+import {
+	HistoryValidationErrorInvalidFormat,
+	HistoryValidationErrorNotExist,
+	HistoryValidationErrorNotObject,
+	TExerciseHistoryItem,
+} from '../model/types';
 
 type TMinifiedProgress = {
 	rC: number;
@@ -55,14 +60,22 @@ export const formatHistoryForImport = (
 };
 
 export const validateHistory = (history: unknown[]): history is TMinifiedHistoryItem[] => {
-	return history.every((item) => {
+	return history.every((item, index) => {
+		if (typeof item !== 'object')
+			throw new HistoryValidationErrorNotObject(
+				`item #${index} is not object: ${JSON.stringify(item)}`,
+			);
+		if (item === null)
+			throw new HistoryValidationErrorNotExist(
+				`item #${index} is not exist: ${JSON.stringify(item)}`,
+			);
+		if (!('eId' in item) || !('p' in item) || !('dC' in item))
+			throw new HistoryValidationErrorInvalidFormat(
+				`item #${index} is not valid: ${JSON.stringify(item)}`,
+			);
+
 		return (
-			typeof item === 'object' &&
-			item !== null &&
-			'eId' in item &&
-			'p' in item &&
-			'dC' in item &&
-			'gN' in item
+			typeof item === 'object' && item !== null && 'eId' in item && 'p' in item && 'dC' in item
 		);
 	});
 };

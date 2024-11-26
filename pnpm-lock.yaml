@@ -86,6 +86,9 @@ importers:
       react-native-tab-view:
         specifier: ^3.5.2
         version: 3.5.2(react-native-pager-view@6.3.0(react-native@0.74.5(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      react-native-toast-message:
+        specifier: ^2.2.1
+        version: 2.2.1(react-native@0.74.5(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       zustand:
         specifier: ^5.0.0
         version: 5.0.0(@types/react@18.2.79)(react@18.2.0)
@@ -3885,6 +3888,12 @@ packages:
       react: '*'
       react-native: '*'
       react-native-pager-view: '*'
+
+  react-native-toast-message@2.2.1:
+    resolution: {integrity: sha512-iXFMnlxPcgKKs4bZOIl06W16m6KXMh/bAYpWLyVXlISSCdcL2+FX5WPpRP3TGQeM/u9q+j5ex48DDY+72en+Sw==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
 
   react-native-vector-icons@10.2.0:
     resolution: {integrity: sha512-n5HGcxUuVaTf9QJPs/W22xQpC2Z9u0nb0KgLPnVltP8vdUvOp6+R26gF55kilP/fV4eL4vsAHUqUjewppJMBOQ==}
@@ -9610,6 +9619,11 @@ snapshots:
       react-native: 0.74.5(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.2.79)(react@18.2.0)
       react-native-pager-view: 6.3.0(react-native@0.74.5(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       use-latest-callback: 0.1.11(react@18.2.0)
+
+  react-native-toast-message@2.2.1(react-native@0.74.5(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+      react-native: 0.74.5(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.2.79)(react@18.2.0)
 
   react-native-vector-icons@10.2.0:
     dependencies:

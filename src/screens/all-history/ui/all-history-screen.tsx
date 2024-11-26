@@ -5,6 +5,7 @@ import { ExercisePreview } from 'entities/exercise';
 import { AllHistory } from 'features/history/get-all';
 
 import { Header } from 'widgets/header';
+import { PageLayout } from 'widgets/pageLayout';
 
 import { useBottomModal } from 'shared/lib/bottom-modal';
 
@@ -22,10 +23,10 @@ const AllHistoryScreen = () => {
 	}, []);
 
 	return (
-		<>
+		<PageLayout scrollable>
 			<Header onOptionPress={handleOptionBtnPress} />
 			<AllHistory renderExercisePreview={handleRenderPreview} />
-		</>
+		</PageLayout>
 	);
 };
 

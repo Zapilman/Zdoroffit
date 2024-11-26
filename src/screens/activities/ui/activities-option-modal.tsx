@@ -7,6 +7,7 @@ import { router } from 'expo-router';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useActivity } from 'entities/activity';
+import { ModalProvider } from 'entities/modal';
 
 import { SaveProgramBtn } from 'features/saved-program';
 
@@ -38,9 +39,11 @@ export const ActivitiesOptionsModal = memo(
 				enableDismissOnClose
 			>
 				<BottomSheetView style={styles.modalContainer}>
-					<Button title="Clear Activities" onPress={clearActivities} />
-					<SaveProgramBtn onSuccess={moveToSavedPrograms} activities={activities} />
-					<Button title="Saved Programs" onPress={moveToSavedPrograms} />
+					<ModalProvider>
+						<Button title="Clear Activities" onPress={clearActivities} />
+						<SaveProgramBtn onSuccess={moveToSavedPrograms} activities={activities} />
+						<Button title="Saved Programs" onPress={moveToSavedPrograms} />
+					</ModalProvider>
 				</BottomSheetView>
 			</BottomSheetModal>
 		);

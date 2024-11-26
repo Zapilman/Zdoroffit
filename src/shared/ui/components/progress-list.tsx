@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Colors } from 'shared/config';
+import { TAppTheme, useAppTheme } from 'shared/lib/theme';
+import { typedMemo } from 'shared/types/react';
 
 import Typography from './Typography/Typography';
 
@@ -16,18 +18,33 @@ const ProgressList = <ListItem extends Record<string, unknown>>({
 	renderItem,
 	keyExtractor,
 }: TProgressListProps<ListItem>) => {
+	const { theme } = useAppTheme();
+	const themeStyles = getThemeStyles(theme);
+
 	return list.map((listItem, index) => (
 		<View key={keyExtractor(listItem, index)} style={styles.listItem}>
 			<View style={styles.orderWrapper}>
-				<Typography style={styles.order}>{index + 1}</Typography>
+				<Typography style={[styles.order, themeStyles.order]}>{index + 1}</Typography>
 				<View style={styles.item}>{renderItem(listItem, index)}</View>
 			</View>
-			{index < list.length - 1 && <View style={[styles.progressLine, styles.lineCompleted]} />}
+			{index < list.length - 1 && <View style={[styles.progressLine, themeStyles.progressLine]} />}
 		</View>
 	));
 };
 
-export default ProgressList as typeof ProgressList;
+export default typedMemo(ProgressList);
+
+const getThemeStyles = (theme: TAppTheme) =>
+	StyleSheet.create({
+		progressLine: {
+			backgroundColor: theme.colors.focus,
+		},
+		order: {
+			backgroundColor: theme.colors.primary,
+			borderWidth: 2,
+			borderColor: theme.colors.focus,
+		},
+	});
 
 const styles = StyleSheet.create({
 	listItem: {
@@ -44,7 +61,6 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: 2,
 		height: '100%',
-		backgroundColor: Colors.ACCENT,
 		left: 15,
 		top: 30,
 		zIndex: 1,
@@ -58,9 +74,6 @@ const styles = StyleSheet.create({
 		height: 30,
 		textAlign: 'center',
 		zIndex: 2,
-	},
-	lineCompleted: {
-		backgroundColor: Colors.SECONDARY,
 	},
 	item: {
 		flex: 1,

@@ -1,19 +1,18 @@
-import { ComponentProps, memo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { memo } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Typography } from 'shared/ui/components/Typography';
+import { DotsIcon } from 'shared/ui/icons';
 
-import { HeaderOptionButton } from './option-button';
-
-type THeaderProps = ComponentProps<typeof HeaderOptionButton>;
-
-const Header = ({ onOptionPress }: THeaderProps) => {
+const Header = ({ onOptionPress }: { onOptionPress: () => void }) => {
 	return (
 		<View style={styles.header}>
 			<Typography size="lg" weight="bold">
 				Zdoroffit
 			</Typography>
-			<HeaderOptionButton onOptionPress={onOptionPress} />
+			<Pressable onPress={onOptionPress}>
+				<DotsIcon />
+			</Pressable>
 		</View>
 	);
 };

@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
+import { Button } from 'react-native-paper';
 
 import {
 	ActivityProgressForm,
@@ -9,7 +10,6 @@ import {
 } from 'features/activities/manage-progress';
 import { EActivityFieldNames } from 'features/activities/manage-progress/model/formTypes';
 
-import { Button } from 'shared/ui';
 import ControlledInput from 'shared/ui/components/controlled-input';
 
 import { ActivityOptionButtons } from './activity-options';
@@ -67,15 +67,14 @@ export const ActivityForm = memo(({ activityId, onSave, exerciseId }: TActivityF
 						key={field.id}
 						control={methods.control}
 						name={`${activityId}.${EActivityFieldNames.GENERAL_NOTES}.0.${EActivityFieldNames.GENERAL_NOTE}`}
-						labelText="note"
-						inputProps={{
-							placeholder: 'Note...',
-						}}
+						label="note"
 					/>
 				</>
 			))}
 			<ActivityProgressForm fieldPrefix={activityId} />
-			<Button title="Save" onPress={methods.handleSubmit(handleSave)} />
+			<Button mode="contained-tonal" onPress={methods.handleSubmit(handleSave)}>
+				Save
+			</Button>
 		</FormProvider>
 	);
 });

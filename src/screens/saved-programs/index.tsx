@@ -5,6 +5,7 @@ import { PathRoutes } from 'core/routes';
 import { router } from 'expo-router';
 
 import { useActivity } from 'entities/activity';
+import { TActivity } from 'entities/activity/model/types';
 
 import { useProgram } from 'features/saved-program';
 
@@ -12,9 +13,20 @@ import { PageLayout } from 'widgets/pageLayout';
 
 import { Typography } from 'shared/ui/components/Typography';
 
+const parseActivities = (activities: TActivity[]) => {
+	return activities.map((activity) => ({
+		_id: (Math.random() + 1).toString(36).substring(7),
+		exerciseName: activity.exerciseName,
+		setsCount: 3,
+		repsCount: 2,
+		muscleGroup: 'asdasd',
+		imgUrl: activity.imgUrl,
+	}));
+};
+
 export const SavedProgramsScreen = () => {
 	const savedPrograms = useProgram((state) => state.savedPrograms);
-	const setActivities = useActivity((state) => state.setActivities);
+	const addActivity = useActivity((state) => state.addActivity);
 
 	const handlePressProgram = useCallback(
 		(programId: string) => {
@@ -22,12 +34,14 @@ export const SavedProgramsScreen = () => {
 				?.activities;
 
 			if (relatedActivities) {
-				setActivities(relatedActivities);
+				parseActivities(relatedActivities)
+					.reverse()
+					.forEach((activity) => addActivity(activity));
 
 				router.push(PathRoutes.WORKOUT);
 			}
 		},
-		[savedPrograms, setActivities],
+		[savedPrograms, addActivity],
 	);
 
 	return (

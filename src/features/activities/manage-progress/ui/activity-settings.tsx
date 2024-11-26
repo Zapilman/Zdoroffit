@@ -1,7 +1,8 @@
 import { memo } from 'react';
 
-import { Button, Typography } from 'shared/ui';
+import { Button } from 'shared/ui';
 import { Modal } from 'shared/ui/components/Modal';
+import { Typography } from 'shared/ui/components/Typography';
 
 type TActivitySettingsProps = {
 	onAddNote: () => void;

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
+import Toast from 'react-native-toast-message';
 
 import { PortalProvider } from '@gorhom/portal';
 
@@ -23,6 +24,7 @@ export const OpenLayout = ({ children }: { children: ReactNode }) => {
 					<BottomModalProvider>{children}</BottomModalProvider>
 				</ModalProvider>
 			</PortalProvider>
+			<Toast />
 		</View>
 	);
 };

@@ -2,13 +2,17 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { View } from 'react-native';
 
 import {
+	HistoryValidationErrorInvalidFormat,
+	HistoryValidationErrorNotExist,
+	HistoryValidationErrorNotObject,
 	TExerciseHistoryItem,
 	formatHistoryForImport,
 	validateHistory,
 } from 'entities/exercise-history';
 
-import { Button, ControlledInput, Typography } from 'shared/ui';
+import { Button, ControlledInput } from 'shared/ui';
 import { Modal } from 'shared/ui/components/Modal';
+import { Typography } from 'shared/ui/components/Typography';
 
 import { EImportHistoryFieldNames, TImportHistoryFields } from '../model/types';
 
@@ -25,16 +29,22 @@ export const ImportHistoryModal = ({ closeModal }: TImportHistoryModalProps) => 
 
 	const handleSave = (data: TImportHistoryFields) => {
 		const newHistory = JSON.parse(data[EImportHistoryFieldNames.CONFIG]);
-		if (validateHistory(newHistory))
-			closeModal({
-				history: formatHistoryForImport(newHistory),
-			});
+		try {
+			if (validateHistory(newHistory))
+				closeModal({
+					history: formatHistoryForImport(newHistory),
+				});
+		} catch (error) {
+			if (error instanceof HistoryValidationErrorInvalidFormat) alert(error.message);
+			if (error instanceof HistoryValidationErrorNotExist) alert(error.message);
+			if (error instanceof HistoryValidationErrorNotObject) alert(error.message);
+		}
 	};
 
 	return (
 		<Modal onClose={() => closeModal(null)}>
 			<Modal.Title>
-				<Typography kind="accent" size="lg">
+				<Typography kind="text" size="lg">
 					Import History Config
 				</Typography>
 			</Modal.Title>
@@ -43,7 +53,7 @@ export const ImportHistoryModal = ({ closeModal }: TImportHistoryModalProps) => 
 					<ControlledInput
 						control={methods.control}
 						name={EImportHistoryFieldNames.CONFIG}
-						labelText="config"
+						label="config"
 					/>
 				</View>
 				<Modal.Actions>

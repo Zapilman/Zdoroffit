@@ -7,6 +7,8 @@ import { useShallow } from 'zustand/react/shallow';
 import { useExercises } from 'entities/exercise';
 import { ExerciseHistoryCard, useExerciseHistory } from 'entities/exercise-history';
 
+import { PageLayout } from 'widgets/pageLayout';
+
 import { Colors } from 'shared/config';
 
 const ExerciseHistoryScreen = () => {
@@ -26,19 +28,21 @@ const ExerciseHistoryScreen = () => {
 	}, [navigation, exercise.name]);
 
 	return (
-		<View style={styles.pageWrapper}>
-			{!!exerciseHistory.length &&
-				exerciseHistory.map((history, index) => (
-					<Fragment key={history._id}>
-						{index > 0 && <View style={styles.separator} />}
-						<ExerciseHistoryCard
-							generalNote={history.generalNote}
-							dateCreated={history.dateCreated}
-							progress={history.progress}
-						/>
-					</Fragment>
-				))}
-		</View>
+		<PageLayout>
+			<View style={styles.pageWrapper}>
+				{!!exerciseHistory.length &&
+					exerciseHistory.map((history, index) => (
+						<Fragment key={history._id}>
+							{index > 0 && <View style={styles.separator} />}
+							<ExerciseHistoryCard
+								generalNote={history.generalNote}
+								dateCreated={history.dateCreated}
+								progress={history.progress}
+							/>
+						</Fragment>
+					))}
+			</View>
+		</PageLayout>
 	);
 };
 

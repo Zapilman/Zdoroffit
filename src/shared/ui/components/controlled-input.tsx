@@ -13,7 +13,6 @@ type TControlledInputProps<T extends FieldValues> = {
 const ControlledInput = <T extends FieldValues>({
 	control,
 	name,
-	inputProps,
 	...otherProps
 }: TControlledInputProps<T>) => {
 	const { field } = useController({
@@ -21,21 +20,7 @@ const ControlledInput = <T extends FieldValues>({
 		name,
 	});
 
-	// return (
-	// 	<TextInput
-	// 		{...otherProps}
-	// 		label="Email"
-	// 		value={String(field.value)}
-	// 		onChangeText={field.onChange}
-	// 	/>
-	// );
-
-	return (
-		<Input
-			{...otherProps}
-			inputProps={{ ...inputProps, value: String(field.value), onChangeText: field.onChange }}
-		/>
-	);
+	return <Input {...otherProps} value={String(field.value)} onChangeText={field.onChange} />;
 };
 
 export default typedMemo(ControlledInput);

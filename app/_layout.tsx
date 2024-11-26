@@ -1,20 +1,14 @@
 import { useEffect } from 'react';
-import { Icon } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { PortalProvider } from '@gorhom/portal';
 import { AppProvider } from 'core/providers/AppProvider';
 import { useFonts } from 'expo-font';
-import { Redirect, Slot, SplashScreen, Stack } from 'expo-router';
-
-import { ModalProvider } from 'entities/modal';
+import { Slot, SplashScreen } from 'expo-router';
 
 import { OpenLayout } from 'widgets/open-layout';
 
-import { Colors, EFontFamily } from 'shared/config';
-import { BottomModalProvider } from 'shared/lib/bottom-modal';
+import { EFontFamily } from 'shared/config';
 import { useAppTheme } from 'shared/lib/theme';
-import { Typography } from 'shared/ui/components/Typography';
 
 SplashScreen.preventAutoHideAsync();
 

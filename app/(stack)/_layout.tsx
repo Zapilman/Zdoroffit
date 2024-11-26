@@ -3,6 +3,7 @@ import { Icon } from 'react-native-paper';
 
 import { Stack, useRouter } from 'expo-router';
 
+import { BottomModalProvider } from 'shared/lib/bottom-modal';
 import { useAppTheme } from 'shared/lib/theme';
 import { Typography } from 'shared/ui/components/Typography';
 
@@ -10,50 +11,52 @@ export default () => {
 	const { theme } = useAppTheme();
 	const router = useRouter();
 	return (
-		<Stack
-			screenOptions={{
-				headerStyle: {
-					backgroundColor: theme.colors.primary,
-				},
-				contentStyle: {
-					backgroundColor: 'transparent',
-				},
-				// headerTintColor: '#fff',
-				// animation: 'slide_from_bottom',
-			}}
-		>
-			{/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
-			{/* <Stack.Screen
+		<BottomModalProvider>
+			<Stack
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: theme.colors.primary,
+					},
+					contentStyle: {
+						backgroundColor: 'transparent',
+					},
+					// headerTintColor: '#fff',
+					// animation: 'slide_from_bottom',
+				}}
+			>
+				{/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+				{/* <Stack.Screen
 				name="exercise/[exerciseId]"
 				options={{
 					headerShown: false,
 					animation: 'slide_from_bottom',
 				}}
 			/> */}
-			{/* <Stack.Screen name="exercises-by-muscle/[muscleName]" /> */}
-			{/* <Stack.Screen name="exercise-history/[exerciseId]" /> */}
-			{/* <Stack.Screen
+				{/* <Stack.Screen name="exercises-by-muscle/[muscleName]" /> */}
+				<Stack.Screen name="exercise-history/[exerciseId]" />
+				{/* <Stack.Screen
 				name="saved-programs"
 				options={{
 					title: 'Saved Programs',
 				}}
 			/> */}
-			<Stack.Screen
-				name="(top-tabs)"
-				options={{
-					headerTitle: () => (
-						<Typography style={styles.headerTitle} size="lg" weight="bold">
-							Add an exercise
-						</Typography>
-					),
-					headerLeft: () => (
-						<Pressable onPress={() => router.back()}>
-							<Icon source="arrow-left" size={24} color={theme.colors.text} />
-						</Pressable>
-					),
-				}}
-			/>
-		</Stack>
+				<Stack.Screen
+					name="(top-tabs)"
+					options={{
+						headerTitle: () => (
+							<Typography style={styles.headerTitle} size="lg" weight="bold">
+								Add an exercise
+							</Typography>
+						),
+						headerLeft: () => (
+							<Pressable onPress={() => router.back()}>
+								<Icon source="arrow-left" size={24} color={theme.colors.text} />
+							</Pressable>
+						),
+					}}
+				/>
+			</Stack>
+		</BottomModalProvider>
 	);
 };
 

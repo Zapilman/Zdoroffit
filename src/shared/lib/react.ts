@@ -7,7 +7,7 @@ export const useStrictContext = <T extends Record<string, unknown>>(
 	const strictContext = useContext(context);
 
 	if (!strictContext) {
-		throw new Error('There is no provided context' + name);
+		throw new Error('There is no provided context ' + name);
 	}
 
 	return strictContext;

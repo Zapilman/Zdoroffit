@@ -3,6 +3,8 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 
+import { ModalProvider } from 'entities/modal';
+
 import { ClearHistoryBtn } from 'features/history/clear';
 import { ImportHistoryBtn } from 'features/history/import';
 import { ShareHistoryBtn } from 'features/history/share';
@@ -21,9 +23,11 @@ export const HistoryOptionsModal = memo(({ closeModal, modalRef }: THistoryOptio
 			enableDismissOnClose
 		>
 			<BottomSheetView style={styles.modalContainer}>
-				<ClearHistoryBtn />
-				<ShareHistoryBtn />
-				<ImportHistoryBtn />
+				<ModalProvider>
+					<ClearHistoryBtn />
+					<ShareHistoryBtn />
+					<ImportHistoryBtn />
+				</ModalProvider>
 			</BottomSheetView>
 		</BottomSheetModal>
 	);

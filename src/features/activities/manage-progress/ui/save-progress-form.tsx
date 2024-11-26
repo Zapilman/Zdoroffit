@@ -22,8 +22,8 @@ export const ActivityProgressForm = memo(({ fieldPrefix }: TActivityProgressForm
 
 	const handleAddSet = useCallback(() => {
 		append({
-			[EActivityFieldNames.LIFTED_WEIGHT]: '0',
-			[EActivityFieldNames.REP_COUNT]: '0',
+			[EActivityFieldNames.LIFTED_WEIGHT]: '',
+			[EActivityFieldNames.REP_COUNT]: '',
 			[EActivityFieldNames.SET_NOTES]: [],
 		});
 	}, []);

@@ -9,5 +9,6 @@ export const DARK_THEME = {
 		onSurfaceVariant: 'white',
 		onSurface: 'white',
 		outline: '#EDEEF8',
+		secondaryContainer: '#e46a13',
 	},
 };

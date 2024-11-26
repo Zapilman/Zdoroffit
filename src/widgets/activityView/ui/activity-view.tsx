@@ -6,6 +6,7 @@ import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { ModalProvider } from 'entities/modal';
 
 import { Colors } from 'shared/config';
+import { TAppTheme, useAppTheme } from 'shared/lib/theme';
 import { Typography } from 'shared/ui/components/Typography';
 
 import { useActivityView } from '../lib/use-activity-view';
@@ -19,6 +20,9 @@ type TActivityViewProps = {
 };
 
 const ActivityView = ({ modalRef, activityId, closeModal }: TActivityViewProps) => {
+	const { theme } = useAppTheme();
+	const themeStyles = getThemeStyles(theme);
+
 	const { exercise, closeSettingsModal } = useActivityView({
 		activityId,
 		closeModal,
@@ -33,13 +37,15 @@ const ActivityView = ({ modalRef, activityId, closeModal }: TActivityViewProps) 
 			enablePanDownToClose
 			enableDismissOnClose
 		>
-			<BottomSheetScrollView contentContainerStyle={styles.modalContainer}>
+			<BottomSheetScrollView
+				contentContainerStyle={[styles.modalContainer, themeStyles.modalContainer]}
+			>
 				<ModalProvider>
 					<View style={styles.activityInterection}>
 						{exercise?.videoUrl && <ActivityVideo videoUrl={exercise.videoUrl} />}
 
 						<View style={styles.ph20}>
-							<Typography kind="accent" weight="bold" size="lg">
+							<Typography kind="text" weight="bold" size="lg">
 								{exercise?.name}
 							</Typography>
 						</View>
@@ -61,6 +67,13 @@ const ActivityView = ({ modalRef, activityId, closeModal }: TActivityViewProps) 
 };
 
 export default memo(ActivityView);
+
+const getThemeStyles = (theme: TAppTheme) =>
+	StyleSheet.create({
+		modalContainer: {
+			backgroundColor: theme.colors.primary,
+		},
+	});
 
 const styles = StyleSheet.create({
 	modalContainer: {

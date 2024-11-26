@@ -14,7 +14,7 @@ type TExerciseHistoryCardProps = Omit<TExerciseHistoryItem, '_id' | 'exerciseId'
 const ExerciseHistoryCard = ({ dateCreated, generalNote, progress }: TExerciseHistoryCardProps) => {
 	return (
 		<View>
-			<Typography kind="primary" size="lg">
+			<Typography kind="text" size="lg">
 				{dayjs(dateCreated).format('MMM DD, YYYY')}
 			</Typography>
 

@@ -1,8 +1,9 @@
 import { memo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { Button, Typography } from 'shared/ui';
+import { Button } from 'shared/ui';
 import { Modal } from 'shared/ui/components/Modal';
+import { Typography } from 'shared/ui/components/Typography';
 import ControlledInput from 'shared/ui/components/controlled-input';
 
 type TProgramForm = {
@@ -31,7 +32,7 @@ export const SaveProgramModal = memo(({ closeModal }: TSaveProgramModalProps) =>
 					<Typography>Program Name</Typography>
 				</Modal.Title>
 
-				<ControlledInput labelText="name" control={methods.control} name="name" />
+				<ControlledInput label="name" control={methods.control} name="name" />
 
 				<Modal.Actions>
 					<Button title="Save Program" onPress={methods.handleSubmit(handleSave)} />
