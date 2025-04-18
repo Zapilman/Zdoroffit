@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from 'react';
 import { Dimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SceneMap, TabView } from 'react-native-tab-view';
+import { Route, SceneMap, TabView } from 'react-native-tab-view';
 
 import { Typography } from 'shared/ui/components/Typography';
 
@@ -65,7 +65,7 @@ export default () => {
 		{ key: 'tab3', title: 'Tab 3' },
 	]);
 
-	const renderScene = ({ route }) => {
+	const renderScene = ({ route }: { route: Route }) => {
 		switch (route.key) {
 			case 'tab0':
 				return (

@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:app": "eas build --platform android --profile preview"
+    "build:app": "eas build --platform android --profile preview",
+    "typescheck": "npx tsc -p tsconfig.json"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5",
@@ -15,14 +16,16 @@
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/material-top-tabs": "^6.6.14",
     "@react-navigation/native": "^6.1.18",
+    "@tanstack/react-query": "^5.62.0",
+    "axios": "^1.7.8",
     "babel-plugin-module-resolver": "^5.0.2",
     "dayjs": "^1.11.13",
-    "expo": "~51.0.28",
+    "expo": "~51.0.39",
     "expo-av": "~14.0.7",
     "expo-constants": "~16.0.2",
     "expo-font": "~12.0.10",
     "expo-linking": "~6.3.1",
-    "expo-router": "~3.5.23",
+    "expo-router": "~3.5.24",
     "expo-sharing": "~12.0.1",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
@@ -41,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@tanstack/eslint-plugin-query": "^5.61.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/react": "~18.2.45",
     "@typescript-eslint/eslint-plugin": "6.16.0",

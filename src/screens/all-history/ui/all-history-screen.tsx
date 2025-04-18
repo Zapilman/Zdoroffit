@@ -23,7 +23,7 @@ const AllHistoryScreen = () => {
 	}, []);
 
 	return (
-		<PageLayout scrollable>
+		<PageLayout scrollable safe>
 			<Header onOptionPress={handleOptionBtnPress} />
 			<AllHistory renderExercisePreview={handleRenderPreview} />
 		</PageLayout>

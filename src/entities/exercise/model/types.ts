@@ -7,6 +7,7 @@ export type TExerciseToDo = {
 
 export type TExercise = {
 	name: string;
+	slug: string;
 	imageUrl: string;
 	videoUrl: string;
 	id: string;

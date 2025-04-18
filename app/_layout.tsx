@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AppProvider } from 'core/providers/AppProvider';
+import { ConfigurationProvider } from 'core/providers/configuration-provider';
 import { useFonts } from 'expo-font';
 import { Slot, SplashScreen } from 'expo-router';
 
@@ -33,9 +34,11 @@ export default function RootLayout() {
 	return (
 		<AppProvider>
 			<OpenLayout>
-				<SafeAreaProvider>
-					<Slot />
-				</SafeAreaProvider>
+				<ConfigurationProvider>
+					<SafeAreaProvider>
+						<Slot />
+					</SafeAreaProvider>
+				</ConfigurationProvider>
 			</OpenLayout>
 		</AppProvider>
 	);

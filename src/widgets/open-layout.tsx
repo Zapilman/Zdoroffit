@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button } from 'react-native-paper';
 import Toast from 'react-native-toast-message';
 
 import { PortalProvider } from '@gorhom/portal';
@@ -11,14 +10,11 @@ import { BottomModalProvider } from 'shared/lib/bottom-modal';
 import { TAppTheme, useAppTheme } from 'shared/lib/theme';
 
 export const OpenLayout = ({ children }: { children: ReactNode }) => {
-	const { theme, toggleTheme } = useAppTheme();
+	const { theme } = useAppTheme();
 	const styles = getStyles(theme);
 
 	return (
 		<View style={styles.wrapper}>
-			<Button onPress={toggleTheme} mode="contained">
-				Open
-			</Button>
 			<PortalProvider>
 				<ModalProvider>
 					<BottomModalProvider>{children}</BottomModalProvider>

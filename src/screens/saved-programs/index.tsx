@@ -45,7 +45,7 @@ export const SavedProgramsScreen = () => {
 	);
 
 	return (
-		<PageLayout>
+		<PageLayout safe scrollable>
 			{savedPrograms.map((program) => (
 				<Pressable
 					key={program.programId}

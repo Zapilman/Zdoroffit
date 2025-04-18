@@ -7,20 +7,21 @@ import { TAppTheme, useAppTheme } from 'shared/lib/theme';
 type TPageLayoutProps = {
 	children: ReactNode;
 	scrollable?: boolean;
+	safe?: boolean;
 	style?: ViewStyle;
 };
 
-export const PageLayout = ({ children, style, scrollable }: TPageLayoutProps) => {
+export const PageLayout = ({ children, style, scrollable, safe }: TPageLayoutProps) => {
 	const { theme } = useAppTheme();
-
 	const styles = getStyles(theme);
 
+	const Wrapper = safe ? SafeAreaView : View;
 	const ContainerComponent = scrollable ? ScrollView : View;
 
 	return (
-		<SafeAreaView style={styles.wrapper}>
+		<Wrapper style={styles.wrapper}>
 			<ContainerComponent style={[styles.layout, style]}>{children}</ContainerComponent>
-		</SafeAreaView>
+		</Wrapper>
 	);
 };
 
@@ -28,10 +29,10 @@ const getStyles = (theme: TAppTheme) =>
 	StyleSheet.create({
 		wrapper: {
 			flex: 1,
+			backgroundColor: theme.colors.primary,
 		},
 		layout: {
 			flex: 1,
 			paddingHorizontal: 20,
-			backgroundColor: theme.colors.primary,
 		},
 	});
